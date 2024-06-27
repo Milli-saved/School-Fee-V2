@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 
 // Layout
 import NonAuthLayout from "../Layouts/NonAuthLayout";
@@ -10,7 +10,6 @@ import { publicRoutes } from "./allRoutes";
 const Index = () => {
   return (
     <React.Fragment>
-      <Router>
         <Routes>
           <Route>
             {publicRoutes.map((route, idx) => (
@@ -23,7 +22,6 @@ const Index = () => {
             ))}
           </Route>
         </Routes>
-      </Router>
     </React.Fragment>
   );
 };
