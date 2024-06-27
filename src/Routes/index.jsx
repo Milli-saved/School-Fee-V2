@@ -25,3 +25,5 @@ const Index = () => {
     </React.Fragment>
   );
 };
+
+export default Index;
