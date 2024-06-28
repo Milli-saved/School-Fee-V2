@@ -115,7 +115,7 @@ const Login = (props) => {
                     </Link>
                   </div>
                   <p className="mt-3 fs-15 fw-medium">
-                    Premium Admin & Dashboard Template
+                    Premium Admin & Dashboard Template hello
                   </p>
                 </div>
               </Col>
@@ -247,39 +247,6 @@ const Login = (props) => {
                           </Button>
                         </div>
 
-                        <div className="mt-4 text-center">
-                          <div className="signin-other-title">
-                            <h5 className="fs-13 mb-4 title">Sign In with</h5>
-                          </div>
-                          <div>
-                            <Link
-                              to="#"
-                              className="btn btn-primary btn-icon me-1"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                socialResponse("facebook");
-                              }}
-                            >
-                              <i className="ri-facebook-fill fs-16" />
-                            </Link>
-                            <Link
-                              to="#"
-                              className="btn btn-danger btn-icon me-1"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                socialResponse("google");
-                              }}
-                            >
-                              <i className="ri-google-fill fs-16" />
-                            </Link>
-                            <Button color="dark" className="btn-icon">
-                              <i className="ri-github-fill fs-16"></i>
-                            </Button>{" "}
-                            <Button color="info" className="btn-icon">
-                              <i className="ri-twitter-fill fs-16"></i>
-                            </Button>
-                          </div>
-                        </div>
                       </Form>
                     </div>
                   </CardBody>
