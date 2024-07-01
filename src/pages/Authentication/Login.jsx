@@ -115,7 +115,7 @@ const Login = (props) => {
                     </Link>
                   </div>
                   <p className="mt-3 fs-15 fw-medium">
-                    Premium Admin & Dashboard Template hello
+                    Commercial Bank Of Ethiopia.
                   </p>
                 </div>
               </Col>
@@ -128,7 +128,7 @@ const Login = (props) => {
                     <div className="text-center mt-2">
                       <h5 className="text-primary">Welcome Back !</h5>
                       <p className="text-muted">
-                        Sign in to continue to Velzon.
+                        Commercial Bank of Ethiopia, School Fee.
                       </p>
                     </div>
                     {error && error ? (
@@ -246,24 +246,10 @@ const Login = (props) => {
                             Sign In
                           </Button>
                         </div>
-
                       </Form>
                     </div>
                   </CardBody>
                 </Card>
-
-                <div className="mt-4 text-center">
-                  <p className="mb-0">
-                    Don't have an account ?{" "}
-                    <Link
-                      to="/register"
-                      className="fw-semibold text-primary text-decoration-underline"
-                    >
-                      {" "}
-                      Signup{" "}
-                    </Link>{" "}
-                  </p>
-                </div>
               </Col>
             </Row>
           </Container>
