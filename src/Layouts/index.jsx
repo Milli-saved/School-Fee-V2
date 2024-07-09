@@ -4,6 +4,7 @@ import withRouter from "../Components/Common/withRouter";
 
 //import Components
 import Header from "./Header";
+import Sidebar from "./Sider";
 
 //import actions
 import {
@@ -141,10 +142,11 @@ const Layout = (props) => {
           layoutModeType={layoutModeType}
           onChangeLayoutMode={onChangeLayoutMode}
         />
-        {/* <Sidebar layoutType={layoutType} />
-                <div className="main-content">{props.children}
-                    <Footer />
-                </div> */}
+        <Sidebar layoutType={layoutType} />
+        <div className="main-content">
+          {props.children}
+          {/* <Footer /> */}
+        </div>
       </div>
       {/* <RightSidebar /> */}
     </React.Fragment>
