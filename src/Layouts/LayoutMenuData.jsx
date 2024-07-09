@@ -154,7 +154,7 @@ const Navdata = () => {
       id: "roles",
       label: "Roles",
       icon: "las la-table",
-      link: "/#",
+      link: "/roles",
       click: function (e) {
         e.preventDefault();
         setIsTables(!isTables);

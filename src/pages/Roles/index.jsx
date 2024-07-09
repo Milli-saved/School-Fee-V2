@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import SimpleBar from "simplebar-react";
 import Flatpickr from "react-flatpickr";
-import Dragula from "react-dragula";
+// import Dragula from "react-dragula";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import taskImg from "../../assets/images/task.png";
@@ -416,12 +416,12 @@ const ToDoList = () => {
 
   const [droplist, setDroplist] = useState(false);
 
-  const dragulaDecorator = (componentBackingInstance) => {
-    if (componentBackingInstance) {
-      let options = {};
-      Dragula([componentBackingInstance], options);
-    }
-  };
+//   const dragulaDecorator = (componentBackingInstance) => {
+//     if (componentBackingInstance) {
+//       let options = {};
+//       Dragula([componentBackingInstance], options);
+//     }
+//   };
 
   return (
     <React.Fragment>
@@ -606,7 +606,7 @@ const ToDoList = () => {
                         </tr>
                       </thead>
 
-                      <tbody id="task-list" ref={dragulaDecorator}>
+                      <tbody id="task-list">
                         {(taskList || []).map((item, key) => (
                           <tr key={key}>
                             <td>
