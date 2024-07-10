@@ -124,7 +124,7 @@ const Login = (props) => {
                 <Card className="mt-4">
                   <CardBody className="p-4">
                     <div className="text-center mt-2">
-                      <h5 className="text-primary">Welcome Back !</h5>
+                      <h5 style={{ color: "#9316cc" }}>Welcome Back !</h5>
                       <p className="text-muted">
                         Commercial Bank of Ethiopia, School Fee.
                       </p>
@@ -230,9 +230,9 @@ const Login = (props) => {
 
                         <div className="mt-4">
                           <Button
-                            color="success"
+                            color="secondary"
                             disabled={error ? null : loading ? true : false}
-                            className="btn btn-success w-100"
+                            className="btn btn-secondary w-100"
                             type="submit"
                           >
                             {loading ? (
