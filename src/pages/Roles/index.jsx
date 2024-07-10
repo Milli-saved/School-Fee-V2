@@ -721,7 +721,7 @@ const ToDoList = () => {
       >
         <ModalHeader toggle={toggle} className="p-3 bg-success-subtle">
           {" "}
-          {!!isEdit ? "Edit Task" : "Create Task"}{" "}
+          {!!isEdit ? "Edit Task" : "Create Role"}{" "}
         </ModalHeader>
         <ModalBody>
           <div id="task-error-msg" className="alert alert-danger py-2"></div>
@@ -736,13 +736,13 @@ const ToDoList = () => {
             <input type="hidden" id="taskid-input" className="form-control" />
             <div className="mb-3">
               <label htmlFor="task-title-input" className="form-label">
-                Task Title
+                Role
               </label>
               <input
                 type="text"
                 id="task-title-input"
                 className="form-control"
-                placeholder="Enter task title"
+                placeholder="Enter Role title"
                 name="task"
                 validate={{ required: { value: true } }}
                 onChange={validation.handleChange}
@@ -895,7 +895,7 @@ const ToDoList = () => {
                 <i className="ri-close-fill align-bottom"></i> Close
               </button>
               <button type="submit" className="btn btn-primary" id="addNewTodo">
-                {!!isEdit ? "Save" : "Add Task"}
+                {!!isEdit ? "Save" : "Add Role"}
               </button>
             </div>
           </Form>
