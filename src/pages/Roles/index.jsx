@@ -416,12 +416,12 @@ const ToDoList = () => {
 
   const [droplist, setDroplist] = useState(false);
 
-//   const dragulaDecorator = (componentBackingInstance) => {
-//     if (componentBackingInstance) {
-//       let options = {};
-//       Dragula([componentBackingInstance], options);
-//     }
-//   };
+  //   const dragulaDecorator = (componentBackingInstance) => {
+  //     if (componentBackingInstance) {
+  //       let options = {};
+  //       Dragula([componentBackingInstance], options);
+  //     }
+  //   };
 
   return (
     <React.Fragment>
@@ -441,11 +441,11 @@ const ToDoList = () => {
                     className="btn btn-success w-100"
                     onClick={() => setModalProject(true)}
                   >
-                    <i className="ri-add-line align-bottom"></i> Add Project
+                    <i className="ri-add-line align-bottom"></i> Add Role
                   </button>
                 </div>
 
-                <SimpleBar
+                {/* <SimpleBar
                   className="px-4 mx-n4"
                   style={{ height: "calc(100vh - 468px)" }}
                 >
@@ -482,7 +482,7 @@ const ToDoList = () => {
                       </li>
                     ))}
                   </ul>
-                </SimpleBar>
+                </SimpleBar> */}
 
                 <div className="mt-auto text-center">
                   <img src={taskImg} alt="Task" className="img-fluid" />
@@ -501,14 +501,14 @@ const ToDoList = () => {
                 </div>
                 <div className="col-sm order-3 order-sm-2 mt-3 mt-sm-0">
                   <h5 className="fw-semibold mb-0">
-                    Velzon Admin & Dashboard{" "}
-                    <span className="badge bg-primary align-bottom ms-2">
+                    Role Controller{" "}
+                    {/* <span className="badge bg-primary align-bottom ms-2">
                       v2.0.0
-                    </span>
+                    </span> */}
                   </h5>
                 </div>
 
-                <div className="col-auto order-2 order-sm-3 ms-auto">
+                {/* <div className="col-auto order-2 order-sm-3 ms-auto">
                   <div className="hstack gap-2">
                     <div
                       className="btn-group"
@@ -523,11 +523,11 @@ const ToDoList = () => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </Row>
               <div className="p-3 bg-light rounded mb-4">
                 <Row className="g-2">
-                  <Col className="col-lg-auto">
+                  {/* <Col className="col-lg-auto">
                     <select
                       className="form-control"
                       name="choices-select-sortlist"
@@ -538,8 +538,8 @@ const ToDoList = () => {
                       <option value="By ID">By ID</option>
                       <option value="By Name">By Name</option>
                     </select>
-                  </Col>
-                  <Col className="col-lg-auto">
+                  </Col> */}
+                  {/* <Col className="col-lg-auto">
                     <select
                       className="form-control"
                       name="choices-select-status"
@@ -552,7 +552,7 @@ const ToDoList = () => {
                       <option value="Pending">Pending</option>
                       <option value="New">New</option>
                     </select>
-                  </Col>
+                  </Col> */}
                   <Col className="col-lg">
                     <div className="search-box">
                       <input
@@ -567,11 +567,11 @@ const ToDoList = () => {
                   </Col>
                   <Col className="col-lg-auto">
                     <button
-                      className="btn btn-primary createTask"
+                      className="btn btn-secondary createTask"
                       type="button"
                       onClick={() => handleTodoClicks()}
                     >
-                      <i className="ri-add-fill align-bottom" /> Add Tasks
+                      <i className="ri-add-fill align-bottom" /> Add New Account
                     </button>
                   </Col>
                 </Row>
@@ -597,16 +597,16 @@ const ToDoList = () => {
                     <table className="table align-middle position-relative table-nowrap">
                       <thead className="table-active">
                         <tr>
-                          <th scope="col">Task Name</th>
-                          <th scope="col">Assigned</th>
-                          <th scope="col">Due Date</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Role</th>
+                          {/* <th scope="col">Due Date</th> */}
                           <th scope="col">Status</th>
                           <th scope="col">Priority</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
 
-                      <tbody id="task-list">
+                      {/* <tbody id="task-list">
                         {(taskList || []).map((item, key) => (
                           <tr key={key}>
                             <td>
@@ -688,7 +688,7 @@ const ToDoList = () => {
                             </td>
                           </tr>
                         ))}
-                      </tbody>
+                      </tbody> */}
                     </table>
                   </div>
                 </div>
@@ -916,7 +916,7 @@ const ToDoList = () => {
           className="p-3 bg-success-subtle"
           id="createProjectModalLabel"
         >
-          Create Project
+          Create Role
         </ModalHeader>
         <ModalBody>
           <form
@@ -930,7 +930,7 @@ const ToDoList = () => {
           >
             <div className="mb-4">
               <label htmlFor="projectname-input" className="form-label">
-                Project Name
+                Role Name
               </label>
               <Input
                 type="text"
@@ -943,7 +943,7 @@ const ToDoList = () => {
                 onChange={projectValidation.handleChange}
                 onBlur={projectValidation.handleBlur}
                 value={projectValidation.values.title || ""}
-                placeholder="Enter project name"
+                placeholder="Enter Role name"
                 invalid={
                   projectValidation.touched.title &&
                   projectValidation.errors.title
@@ -977,7 +977,7 @@ const ToDoList = () => {
                 className="btn btn-primary"
                 id="addNewProject"
               >
-                Add Project
+                Add Role
               </button>
             </div>
           </form>
