@@ -28,6 +28,7 @@ import { useFormik } from "formik";
 import { loginUser, socialLogin, resetLoginFlag } from "../../slices/thunks";
 
 import logoLight from "../../assets/images/logo-light.png";
+import CbeLogo from "../../assets/images/cbe-logo.png";
 import { createSelector } from "reselect";
 //import images
 
@@ -108,15 +109,12 @@ const Login = (props) => {
           <Container>
             <Row>
               <Col lg={12}>
-                <div className="text-center mt-sm-5 mb-4 text-white-50">
+                <div className="text-center mt-sm-5 mb-2 text-white-50">
                   <div>
                     <Link to="/" className="d-inline-block auth-logo">
-                      <img src={logoLight} alt="" height="20" />
+                      <img src={CbeLogo} alt="" height="150" />
                     </Link>
                   </div>
-                  <p className="mt-3 fs-15 fw-medium">
-                    Commercial Bank Of Ethiopia.
-                  </p>
                 </div>
               </Col>
             </Row>

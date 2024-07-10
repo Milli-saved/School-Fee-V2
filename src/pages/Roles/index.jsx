@@ -106,7 +106,7 @@ const Priority = ({ priority }) => {
 };
 
 const ToDoList = () => {
-  document.title = "To Do Lists | Velzon - React Admin & Dashboard Template";
+  document.title = "Roles";
 
   const dispatch = useDispatch();
 
@@ -559,7 +559,7 @@ const ToDoList = () => {
                         type="text"
                         id="searchTaskList"
                         className="form-control search"
-                        placeholder="Search task name"
+                        placeholder="Search Account"
                         onKeyUp={(e) => searchList(e.target.value)}
                       />
                       <i className="ri-search-line search-icon"></i>
