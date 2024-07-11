@@ -22,22 +22,22 @@ const ProfileDropdown = () => {
 
   const [userName, setUserName] = useState("Admin");
 
-  useEffect(() => {
-    if (sessionStorage.getItem("authUser")) {
-      const obj = JSON.parse(sessionStorage.getItem("authUser"));
-      setUserName(
-        process.env.REACT_APP_DEFAULTAUTH === "fake"
-          ? obj.username === undefined
-            ? user.first_name
-              ? user.first_name
-              : obj.data.first_name
-            : "Admin" || "Admin"
-          : process.env.REACT_APP_DEFAULTAUTH === "firebase"
-          ? obj.email && obj.email
-          : "Admin"
-      );
-    }
-  }, [userName, user]);
+  // useEffect(() => {
+  //   if (sessionStorage.getItem("authUser")) {
+  //     const obj = JSON.parse(sessionStorage.getItem("authUser"));
+  //     setUserName(
+  //       process.env.REACT_APP_DEFAULTAUTH === "fake"
+  //         ? obj.username === undefined
+  //           ? user.first_name
+  //             ? user.first_name
+  //             : obj.data.first_name
+  //           : "Admin" || "Admin"
+  //         : process.env.REACT_APP_DEFAULTAUTH === "firebase"
+  //         ? obj.email && obj.email
+  //         : "Admin"
+  //     );
+  //   }
+  // }, [userName, user]);
 
   //Dropdown Toggle
   const [isProfileDropdown, setIsProfileDropdown] = useState(false);
@@ -119,7 +119,7 @@ const ProfileDropdown = () => {
             </Link>
           </DropdownItem>
           <DropdownItem className="p-0">
-            <Link to="/logout" className="dropdown-item">
+            <Link to="/" className="dropdown-item">
               <i className="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>{" "}
               <span className="align-middle" data-key="t-logout">
                 Logout

@@ -55,12 +55,12 @@ const Sidebar = ({ layoutType }) => {
             </span>
           </Link>
 
-          <Link to="/dashboard" className="logo logo-light">
+          <Link to="#" className="logo logo-light">
             <span className="logo-sm">
               <img src={CbeLogo} alt="" height="25" />
             </span>
             <span className="logo-lg">
-              <img src={CbeLogo} alt="" height="100" />
+              <img src={CbeLogo} alt="" className="m-3" height="100" />
             </span>
           </Link>
           <button

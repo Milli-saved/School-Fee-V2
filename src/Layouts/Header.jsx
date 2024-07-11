@@ -9,7 +9,7 @@ import logoLight from "../assets/images/logo-light.png";
 
 import FullScreenDropdown from "../Components/Common/FullScreenDropdown";
 import NotificationDropdown from "../Components/Common/NotificationDropdown";
-// import ProfileDropdown from "../Components/Common/ProfileDropdown";
+import ProfileDropdown from "../Components/Common/ProfileDropdown";
 import LightDark from "../Components/Common/LightDark";
 
 import { changeSidebarVisibility } from "../slices/thunks";
@@ -26,10 +26,10 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   // Inside your component
   const sidebarVisibilitytype = useSelector(selectDashboardData);
 
-    const [search, setSearch] = useState(false);
-    const toogleSearch = () => {
-      setSearch(!search);
-    };
+  const [search, setSearch] = useState(false);
+  const toogleSearch = () => {
+    setSearch(!search);
+  };
 
   const toogleMenuBtn = () => {
     var windowSize = document.documentElement.clientWidth;
@@ -171,7 +171,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
               <NotificationDropdown />
 
               {/* ProfileDropdown */}
-              {/* <ProfileDropdown /> */}
+              <ProfileDropdown />
             </div>
           </div>
         </div>
