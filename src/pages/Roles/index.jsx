@@ -416,11 +416,8 @@ const ToDoList = () => {
 
   const allRoles = [
     { id: 1, value: "Super Admin" },
-    { id: 2, value: "Super Admin" },
-    { id: 3, value: "Super Admin" },
-    { id: 4, value: "Super Admin" },
-    { id: 5, value: "Super Admin" },
-    { id: 6, value: "Super Admin" },
+    { id: 2, value: "CBE Branch" },
+    { id: 3, value: "School Admin" },
   ];
 
   const [droplist, setDroplist] = useState(false);
