@@ -414,6 +414,15 @@ const ToDoList = () => {
     { id: 10, img: avatar9, name: "Diego Norris" },
   ];
 
+  const allRoles = [
+    { id: 1, value: "Super Admin" },
+    { id: 2, value: "Super Admin" },
+    { id: 3, value: "Super Admin" },
+    { id: 4, value: "Super Admin" },
+    { id: 5, value: "Super Admin" },
+    { id: 6, value: "Super Admin" },
+  ];
+
   const [droplist, setDroplist] = useState(false);
 
   //   const dragulaDecorator = (componentBackingInstance) => {
@@ -445,7 +454,7 @@ const ToDoList = () => {
                   </button>
                 </div>
 
-                {/* <SimpleBar
+                <SimpleBar
                   className="px-4 mx-n4"
                   style={{ height: "calc(100vh - 468px)" }}
                 >
@@ -453,16 +462,16 @@ const ToDoList = () => {
                     className="to-do-menu list-unstyled"
                     id="projectlist-data"
                   >
-                    {(projects || []).map((item, key) => (
+                    {(allRoles || []).map((item, key) => (
                       <li key={key}>
                         <Link
                           to="#"
                           className="nav-link fs-14"
                           id={"todos" + key}
                         >
-                          {item.title}
+                          {item.value}
                         </Link>
-                        <UncontrolledCollapse toggler={"#todos" + key}>
+                        {/* <UncontrolledCollapse toggler={"#todos" + key}>
                           <ul className="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
                             {(item.subItem || []).map((item, key) => (
                               <li key={key}>
@@ -478,11 +487,11 @@ const ToDoList = () => {
                               </li>
                             ))}
                           </ul>
-                        </UncontrolledCollapse>
+                        </UncontrolledCollapse> */}
                       </li>
                     ))}
                   </ul>
-                </SimpleBar> */}
+                </SimpleBar>
 
                 <div className="mt-auto text-center">
                   <img src={taskImg} alt="Task" className="img-fluid" />
