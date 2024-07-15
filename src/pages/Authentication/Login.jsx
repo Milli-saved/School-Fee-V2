@@ -100,6 +100,13 @@ const Login = (props) => {
       }, 3000);
     }
   }, [dispatch, errorMsg]);
+  const LoginSubmitHandler = (e) => {
+    let userData = {
+      email: e.target[0].value,
+      password: e.target[1].value,
+    };
+    dispatch(loginUser(userData, props.router.navigate));
+  };
 
   document.title = "Basic SignIn | Velzon - React Admin & Dashboard Template";
   return (
@@ -136,8 +143,9 @@ const Login = (props) => {
                       <Form
                         onSubmit={(e) => {
                           e.preventDefault();
-                          validation.handleSubmit();
-                          return false;
+                          // validation.handleSubmit();
+                          // return false;
+                          LoginSubmitHandler(e);
                         }}
                         action="#"
                       >

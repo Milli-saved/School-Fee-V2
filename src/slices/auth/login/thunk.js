@@ -4,6 +4,7 @@ import {
   apiError,
   reset_login_flag,
 } from "./reducer";
+import axios from "axios";
 
 export const resetLoginFlag = () => async (dispatch) => {
   try {
@@ -43,16 +44,14 @@ export const logoutUser = () => async (dispatch) => {
 
 export const loginUser = (user, history) => async (dispatch) => {
   try {
-    let response = {
-      email: user.email,
-      password: user.password,
-    };
+    console.log("in the slice: ", user);
+    let response = await axios.post(
+      "http://localhost:5000/api/users/login",
+      user
+    );
     var data = response;
     if (data) {
       sessionStorage.setItem("authUser", JSON.stringify(data));
-      var finallogin = JSON.stringify(data);
-      finallogin = JSON.parse(finallogin);
-      data = finallogin.data;
       dispatch(loginSuccess(data));
       history("/dashboard");
     }
