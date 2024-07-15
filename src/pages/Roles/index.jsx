@@ -43,28 +43,16 @@ import { createSelector } from "reselect";
 
 const Status = ({ status }) => {
   switch (status) {
-    case "New":
+    case 0:
       return (
         <span className="badge bg-info-subtle text-info text-uppercase">
-          {status}
+          Super Admin
         </span>
       );
-    case "Pending":
+    case 2001:
       return (
         <span className="badge bg-warning-subtle text-warning text-uppercase">
-          {status}
-        </span>
-      );
-    case "Inprogress":
-      return (
-        <span className="badge bg-secondary-subtle text-secondary text-uppercase">
-          {status}
-        </span>
-      );
-    case "Completed":
-      return (
-        <span className="badge bg-success-subtle text-success text-uppercase">
-          {status}
+          School Admin
         </span>
       );
     default:
@@ -108,8 +96,9 @@ const ToDoList = () => {
   }));
   const selectProfileProperties = createSelector(selectState, (state) => ({
     success: state.Account.success,
+    allUsers: state.Todos.allUsers,
   }));
-  const { success } = useSelector(selectProfileProperties);
+  const { success, allUsers } = useSelector(selectProfileProperties);
   // Inside your component
   const { todos, projects } = useSelector(selectLayoutProperties);
 
@@ -494,11 +483,51 @@ const ToDoList = () => {
                         <tr>
                           <th scope="col">Name</th>
                           <th scope="col">Role</th>
-                          <th scope="col">Status</th>
+                          {/* <th scope="col">Status</th> */}
                           <th scope="col">Priority</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
+                      <tbody id="task-list">
+                        {(allUsers || []).map((item, key) => (
+                          <tr key={key}>
+                            <td>
+                              <div className="d-flex align-items-start">
+                                {/* <div className="flex-shrink-0 me-3">
+                                  <div className="task-handle px-1 bg-light rounded">
+                                    : :
+                                  </div>
+                                </div> */}
+                                <div className="flex-grow-1">
+                                  <div className="form-check">{item.name}</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <Status status={item.roles} />
+                            </td>
+                            <td>
+                              <Priority priority={item.email} />
+                            </td>
+                            <td>
+                              <div className="hstack gap-2">
+                                <button
+                                  className="btn btn-sm btn-soft-danger remove-list"
+                                  onClick={() => onClickTodoDelete(item)}
+                                >
+                                  <i className="ri-delete-bin-5-fill align-bottom" />
+                                </button>
+                                <button
+                                  className="btn btn-sm btn-soft-info edit-list"
+                                  onClick={() => handleTodoClick(item)}
+                                >
+                                  <i className="ri-pencil-fill align-bottom" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
 
                       {/* <tbody id="task-list">
                         {(taskList || []).map((item, key) => (
