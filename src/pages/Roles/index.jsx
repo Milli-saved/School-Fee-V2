@@ -28,18 +28,6 @@ import { useSelector, useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-// Import Images
-import avatar1 from "../../assets/images/users/avatar-1.jpg";
-import avatar2 from "../../assets/images/users/avatar-2.jpg";
-import avatar3 from "../../assets/images/users/avatar-3.jpg";
-import avatar4 from "../../assets/images/users/avatar-4.jpg";
-import avatar5 from "../../assets/images/users/avatar-5.jpg";
-import avatar6 from "../../assets/images/users/avatar-6.jpg";
-import avatar7 from "../../assets/images/users/avatar-7.jpg";
-import avatar8 from "../../assets/images/users/avatar-8.jpg";
-import avatar9 from "../../assets/images/users/avatar-9.jpg";
-import avatar10 from "../../assets/images/users/avatar-10.jpg";
-
 //import action
 import {
   getTodos as onGetTodos,
@@ -48,6 +36,7 @@ import {
   addNewTodo as onAddNewTodo,
   getProjects as onGetProjects,
   addNewProject as onAddNewProject,
+  RegisterUsers,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
 
@@ -335,99 +324,56 @@ const ToDoList = () => {
       // priority: Yup.string().required("Please Enter Priority"),
     }),
     onSubmit: (values) => {
-      if (isEdit) {
-        const updateTodo = {
-          id: todo ? todo.id : 0,
-          task: values.task,
-          dueDate: date,
-          status: values.status,
-          priority: values.priority,
-        };
-        // save edit Folder
-        dispatch(onupdateTodo(updateTodo));
-        validation.resetForm();
-      } else {
-        const newTodo = {
-          id: (Math.floor(Math.random() * (30 - 20)) + 20).toString(),
-          task: values.task,
-          dueDate: date,
-          status: values.status,
-          priority: values.priority,
-          subItem: assigned,
-        };
-        // save new Folder
-        dispatch(onAddNewTodo(newTodo));
-        validation.resetForm();
-      }
-      toggle();
+      console.log("the values: ", values);
+      // if (isEdit) {
+      //   const updateTodo = {
+      //     id: todo ? todo.id : 0,
+      //     task: values.task,
+      //     dueDate: date,
+      //     status: values.status,
+      //     priority: values.priority,
+      //   };
+      //   // save edit Folder
+      //   dispatch(onupdateTodo(updateTodo));
+      //   validation.resetForm();
+      // } else {
+      //   const newTodo = {
+      //     id: (Math.floor(Math.random() * (30 - 20)) + 20).toString(),
+      //     task: values.task,
+      //     dueDate: date,
+      //     status: values.status,
+      //     priority: values.priority,
+      //     subItem: assigned,
+      //   };
+      //   // save new Folder
+      //   dispatch(onAddNewTodo(newTodo));
+      //   validation.resetForm();
+      // }
+      // toggle();
     },
   });
 
-  const dateFormat = () => {
-    let d = new Date(),
-      months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-    return (
-      d.getDate() +
-      " " +
-      months[d.getMonth()] +
-      ", " +
-      d.getFullYear()
-    ).toString();
-  };
-
-  const [date, setDate] = useState(dateFormat());
-
-  const dateformate = (e) => {
-    const date = e.toString().split(" ");
-    const joinDate = (date[2] + " " + date[1] + ", " + date[3]).toString();
-    setDate(joinDate);
-  };
-
-  const assigned = [
-    { id: 1, img: avatar2, name: "James Forbes" },
-    { id: 2, img: avatar3, name: "John Robles" },
-  ];
-
-  const assignee = [
-    { id: 1, img: avatar2, name: "James Forbes" },
-    { id: 2, img: avatar3, name: "John Robles" },
-    { id: 3, img: avatar4, name: "Mary Gant" },
-    { id: 4, img: avatar1, name: "Curtis Saenz" },
-    { id: 5, img: avatar5, name: "Virgie Price" },
-    { id: 6, img: avatar10, name: "Anthony Mills" },
-    { id: 7, img: avatar6, name: "Marian Angel" },
-    { id: 8, img: avatar7, name: "Johnnie Walton" },
-    { id: 9, img: avatar8, name: "Donna Weston" },
-    { id: 10, img: avatar9, name: "Diego Norris" },
-  ];
-
   const allRoles = [
-    { id: 1, value: "Super Admin" },
-    { id: 2, value: "CBE Branch" },
-    { id: 3, value: "School Admin" },
+    { id: 1, value: "Super Admin", code: "0000" },
+    { id: 2, value: "CBE Branch", code: "2001" },
+    { id: 3, value: "School Admin", code: "2002" },
   ];
 
-  const [droplist, setDroplist] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState(null);
 
-  //   const dragulaDecorator = (componentBackingInstance) => {
-  //     if (componentBackingInstance) {
-  //       let options = {};
-  //       Dragula([componentBackingInstance], options);
-  //     }
-  //   };
+  const RegisterAccount = () => {
+    let userData = {
+      name: fullName,
+      email,
+      roles: Number(role),
+      password: "Welcome@2CBE",
+      secretKey: "yitopretrtyio0594-yopiyr0954",
+    };
+    dispatch(RegisterUsers(userData));
+    console.log("this is the data: ", userData);
+  };
 
   return (
     <React.Fragment>
@@ -444,10 +390,11 @@ const ToDoList = () => {
               <div className="p-4 d-flex flex-column h-100">
                 <div className="mb-3">
                   <button
+                    // disabled
                     className="btn btn-success w-100"
-                    onClick={() => setModalProject(true)}
+                    // onClick={() => setModalProject(true)}
                   >
-                    <i className="ri-add-line align-bottom"></i> Add Role
+                    <i className="ri-add-line align-bottom"></i> All Role
                   </button>
                 </div>
 
@@ -464,27 +411,10 @@ const ToDoList = () => {
                         <Link
                           to="#"
                           className="nav-link fs-14"
-                          id={"todos" + key}
+                          id={"roles" + key}
                         >
                           {item.value}
                         </Link>
-                        {/* <UncontrolledCollapse toggler={"#todos" + key}>
-                          <ul className="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
-                            {(item.subItem || []).map((item, key) => (
-                              <li key={key}>
-                                <Link to="#">
-                                  <i
-                                    className={
-                                      "ri-stop-mini-fill align-middle fs-15 text-" +
-                                      item.iconClass
-                                    }
-                                  ></i>{" "}
-                                  {item.version}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </UncontrolledCollapse> */}
                       </li>
                     ))}
                   </ul>
@@ -506,59 +436,11 @@ const ToDoList = () => {
                   </button>
                 </div>
                 <div className="col-sm order-3 order-sm-2 mt-3 mt-sm-0">
-                  <h5 className="fw-semibold mb-0">
-                    Role Controller{" "}
-                    {/* <span className="badge bg-primary align-bottom ms-2">
-                      v2.0.0
-                    </span> */}
-                  </h5>
+                  <h5 className="fw-semibold mb-0">Role Controller </h5>
                 </div>
-
-                {/* <div className="col-auto order-2 order-sm-3 ms-auto">
-                  <div className="hstack gap-2">
-                    <div
-                      className="btn-group"
-                      role="group"
-                      aria-label="Basic example"
-                    >
-                      <button className="btn btn-icon fw-semibold btn-soft-danger">
-                        <i className="ri-arrow-go-back-line"></i>
-                      </button>
-                      <button className="btn btn-icon fw-semibold btn-soft-success">
-                        <i className="ri-arrow-go-forward-line"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
               </Row>
               <div className="p-3 bg-light rounded mb-4">
                 <Row className="g-2">
-                  {/* <Col className="col-lg-auto">
-                    <select
-                      className="form-control"
-                      name="choices-select-sortlist"
-                      id="choices-select-sortlist"
-                      onChange={(e) => taskSort(e.target.value)}
-                    >
-                      <option value="">Sort</option>
-                      <option value="By ID">By ID</option>
-                      <option value="By Name">By Name</option>
-                    </select>
-                  </Col> */}
-                  {/* <Col className="col-lg-auto">
-                    <select
-                      className="form-control"
-                      name="choices-select-status"
-                      id="choices-select-status"
-                      onChange={(e) => taskStatus(e.target.value)}
-                    >
-                      <option value="">All Tasks</option>
-                      <option value="Completed">Completed</option>
-                      <option value="Inprogress">Inprogress</option>
-                      <option value="Pending">Pending</option>
-                      <option value="New">New</option>
-                    </select>
-                  </Col> */}
                   <Col className="col-lg">
                     <div className="search-box">
                       <input
@@ -605,7 +487,6 @@ const ToDoList = () => {
                         <tr>
                           <th scope="col">Name</th>
                           <th scope="col">Role</th>
-                          {/* <th scope="col">Due Date</th> */}
                           <th scope="col">Status</th>
                           <th scope="col">Priority</th>
                           <th scope="col">Action</th>
@@ -735,25 +616,48 @@ const ToDoList = () => {
             id="creattask-form"
             onSubmit={(e) => {
               e.preventDefault();
-              validation.handleSubmit();
-              return false;
+              // validation.handleSubmit();
+              // return false;
+              RegisterAccount();
             }}
           >
-            <input type="hidden" id="taskid-input" className="form-control" />
+            {/* <input type="hidden" id="taskid-input" className="form-control" /> */}
             <div className="mb-3">
               <label htmlFor="task-title-input" className="form-label">
-                Role
+                Full Name
               </label>
               <input
                 type="text"
                 id="task-title-input"
                 className="form-control"
-                placeholder="Enter Role title"
+                placeholder="Enter Full Name"
                 name="task"
                 validate={{ required: { value: true } }}
-                onChange={validation.handleChange}
+                onChange={(e) => setFullName(e.target.value)}
                 onBlur={validation.handleBlur}
-                value={validation.values.task || ""}
+                value={fullName}
+                // invalid={validation.touched.task && validation.errors.task ? true : false}
+              />
+              {validation.touched.task && validation.errors.task ? (
+                <FormFeedback type="invalid">
+                  {validation.errors.task}
+                </FormFeedback>
+              ) : null}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="task-title-input" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                id="task-title-input"
+                className="form-control"
+                placeholder="Email"
+                name="email"
+                validate={{ required: { value: true } }}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={validation.handleBlur}
+                value={email}
                 // invalid={validation.touched.task && validation.errors.task ? true : false}
               />
               {validation.touched.task && validation.errors.task ? (
@@ -764,7 +668,7 @@ const ToDoList = () => {
             </div>
             <div className="mb-3 position-relative">
               <label htmlFor="task-assign-input" className="form-label">
-                Assigned To
+                Role
               </label>
 
               <div
@@ -772,126 +676,25 @@ const ToDoList = () => {
                 id="assignee-member"
               ></div>
               <div className="select-element">
-                <button
-                  className="btn btn-light w-100 d-flex justify-content-between"
-                  type="button"
-                  onClick={() => setDroplist(!droplist)}
-                >
-                  <span>
-                    Assigned To
-                    <b id="total-assignee" className="mx-1">
-                      0
-                    </b>
-                    Members
-                  </span>{" "}
-                  <i className="mdi mdi-chevron-down"></i>
-                </button>
-                <DropdownMenu className={droplist ? "w-100 show" : "w-100"}>
-                  <SimpleBar style={{ maxHeight: "141px" }}>
-                    <ul className="list-unstyled mb-0">
-                      {assignee.map((item, key) => (
-                        <li key={key}>
-                          <DropdownItem
-                            className="d-flex align-items-center"
-                            href="#"
-                          >
-                            <div className="avatar-xxs flex-shrink-0 me-2">
-                              <img
-                                src={item.img}
-                                alt=""
-                                className="img-fluid rounded-circle"
-                              />
-                            </div>
-                            <div className="flex-grow-1">{item.name}</div>
-                          </DropdownItem>
-                        </li>
-                      ))}
-                    </ul>
-                  </SimpleBar>
-                </DropdownMenu>
-              </div>
-            </div>
-            <Row className="g-4 mb-3">
-              <Col lg={6}>
-                <label htmlFor="task-status" className="form-label">
-                  Status
-                </label>
-
                 <Input
-                  name="status"
+                  name="role"
                   type="select"
                   className="form-select"
                   id="status-field"
-                  onChange={validation.handleChange}
+                  onChange={(e) => setRole(e.target.value)}
                   onBlur={validation.handleBlur}
-                  value={validation.values.status || ""}
+                  value={role}
                 >
-                  {sortbystatus.map((item, key) => (
+                  {allRoles.map((item, key) => (
                     <React.Fragment key={key}>
-                      {item.options.map((item, key) => (
-                        <option value={item.value} key={key}>
-                          {item.label}
-                        </option>
-                      ))}
+                      <option value={item.code} key={key}>
+                        {item.value}
+                      </option>
                     </React.Fragment>
                   ))}
                 </Input>
-                {validation.touched.status && validation.errors.status ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.status}
-                  </FormFeedback>
-                ) : null}
-              </Col>
-              <Col lg={6}>
-                <label htmlFor="priority-field" className="form-label">
-                  Priority
-                </label>
-
-                <Input
-                  name="priority"
-                  type="select"
-                  className="form-select"
-                  id="priority-field"
-                  onChange={validation.handleChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.priority || ""}
-                >
-                  {sortbypriority.map((item, key) => (
-                    <React.Fragment key={key}>
-                      {item.options.map((item, key) => (
-                        <option value={item.value} key={key}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </Input>
-                {validation.touched.priority && validation.errors.priority ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.priority}
-                  </FormFeedback>
-                ) : null}
-              </Col>
-            </Row>
-            <div className="mb-4">
-              <label htmlFor="task-duedate-input" className="form-label">
-                Due Date:
-              </label>
-              <Flatpickr
-                name="dueDate"
-                id="date-field"
-                className="form-control"
-                placeholder="Due date"
-                options={{
-                  altInput: true,
-                  altFormat: "d M, Y",
-                  dateFormat: "d M, Y",
-                }}
-                onChange={(e) => dateformate(e)}
-                value={validation.values.dueDate || ""}
-              />
+              </div>
             </div>
-
             <div className="hstack gap-2 justify-content-end">
               <button
                 type="button"
