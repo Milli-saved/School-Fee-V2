@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 //   addNewProject as addNewProjectApi,
 // } from "../../helpers/fakebackend_helper";
 
+export const getAllUsers = createAsyncThunk("todos/getAllUsers", async () => {
+  try {
+    const response = await axios.get("http://localhost:5000/api/users/");
+    return response;
+  } catch (error) {
+    return error;
+  }
+});
+
 export const getTodos = createAsyncThunk("todos/getTodos", async () => {
   try {
     const response = { name: "", hello: "yes" };
@@ -23,7 +33,7 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
 
 export const addNewTodo = createAsyncThunk("todos/addNewTodo", async (todo) => {
   try {
-    const response = { name: "", hello: "yes" };  
+    const response = { name: "", hello: "yes" };
     const data = response;
     toast.success("Todo Added Successfully", { autoClose: 3000 });
     return data;

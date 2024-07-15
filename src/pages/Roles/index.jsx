@@ -37,6 +37,7 @@ import {
   getProjects as onGetProjects,
   addNewProject as onAddNewProject,
   RegisterUsers,
+  getAllUsers as GetAllUsers,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
 
@@ -130,7 +131,7 @@ const ToDoList = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
-    dispatch(onGetTodos());
+    dispatch(GetAllUsers());
   }, [dispatch]);
 
   useEffect(() => {
