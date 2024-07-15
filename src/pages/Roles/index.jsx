@@ -100,10 +100,15 @@ const ToDoList = () => {
   const dispatch = useDispatch();
 
   const selectLayoutState = (state) => state.Todos;
+  const selectState = (state) => state;
   const selectLayoutProperties = createSelector(selectLayoutState, (state) => ({
     todos: state.todos,
     projects: state.projects,
   }));
+  const selectProfileProperties = createSelector(selectState, (state) => ({
+    success: state.Account.success,
+  }));
+  const { success } = useSelector(selectProfileProperties);
   // Inside your component
   const { todos, projects } = useSelector(selectLayoutProperties);
 
@@ -372,6 +377,7 @@ const ToDoList = () => {
       secretKey: "yitopretrtyio0594-yopiyr0954",
     };
     dispatch(RegisterUsers(userData));
+    setModalTodo(!modalTodo);
     console.log("this is the data: ", userData);
   };
 
