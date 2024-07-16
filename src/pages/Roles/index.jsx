@@ -483,8 +483,7 @@ const ToDoList = () => {
                         <tr>
                           <th scope="col">Name</th>
                           <th scope="col">Role</th>
-                          {/* <th scope="col">Status</th> */}
-                          <th scope="col">Priority</th>
+                          <th scope="col">Email</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -493,11 +492,6 @@ const ToDoList = () => {
                           <tr key={key}>
                             <td>
                               <div className="d-flex align-items-start">
-                                {/* <div className="flex-shrink-0 me-3">
-                                  <div className="task-handle px-1 bg-light rounded">
-                                    : :
-                                  </div>
-                                </div> */}
                                 <div className="flex-grow-1">
                                   <div className="form-check">{item.name}</div>
                                 </div>
