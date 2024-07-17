@@ -11,8 +11,11 @@ import { useSelector } from "react-redux";
 import avatar1 from "../../assets/images/users/avatar-1.jpg";
 import { Link } from "react-router-dom";
 import { createSelector } from "reselect";
+// import { useProfile } from "../Components/Hooks/UserHooks";
+import { useProfile } from "../../Components/Hooks/UserHooks";
 
 const ProfileDropdown = () => {
+  const { userProfile, loading, token } = useProfile();
   const profiledropdownData = createSelector(
     (state) => state.Profile,
     (user) => user.user
@@ -21,23 +24,18 @@ const ProfileDropdown = () => {
   const user = useSelector(profiledropdownData);
 
   const [userName, setUserName] = useState("Admin");
-
-  // useEffect(() => {
-  //   if (sessionStorage.getItem("authUser")) {
-  //     const obj = JSON.parse(sessionStorage.getItem("authUser"));
-  //     setUserName(
-  //       process.env.REACT_APP_DEFAULTAUTH === "fake"
-  //         ? obj.username === undefined
-  //           ? user.first_name
-  //             ? user.first_name
-  //             : obj.data.first_name
-  //           : "Admin" || "Admin"
-  //         : process.env.REACT_APP_DEFAULTAUTH === "firebase"
-  //         ? obj.email && obj.email
-  //         : "Admin"
-  //     );
-  //   }
-  // }, [userName, user]);
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    if (userProfile) {
+      setUserName(userProfile.name);
+      if (userProfile.roles == 0) {
+        setRole("Super Admin");
+      }
+      if (userProfile.roles == 2002) {
+        setRole("School Admin");
+      }
+    }
+  });
 
   //Dropdown Toggle
   const [isProfileDropdown, setIsProfileDropdown] = useState(false);
@@ -63,7 +61,7 @@ const ProfileDropdown = () => {
                 {userName}
               </span>
               <span className="d-none d-xl-block ms-1 fs-13 text-muted user-name-sub-text">
-                Founder
+                {role}
               </span>
             </span>
           </span>

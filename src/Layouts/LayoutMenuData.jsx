@@ -4,16 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useProfile } from "../Components/Hooks/UserHooks";
 
 const Navdata = () => {
-  const { userProfile, loading, token } = useProfile();
-  // const selectAccountState = (state) => state;
-  // const selectProfileProperties = createSelector(
-  //   selectAccountState,
-  //   (state) => ({
-  //     user: state.Login.user,
-  //   })
-  // );
-  // const { user } = useSelector(selectProfileProperties);
-  console.log("the user: ", userProfile);
+  const { userProfile } = useProfile();
 
   const history = useNavigate();
   //state data
