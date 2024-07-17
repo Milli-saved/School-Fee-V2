@@ -105,60 +105,133 @@ const index = () => {
             </Row>
           </div>
           {/*  */}
-
-          <TabContent className="pt-5">
-            <TabPane>
-              <Row>
-                <Col xxl={3}>
-                  <Card>
-                    <CardBody>
-                      <h5 className="card-title mb-3">Info</h5>
-                      <div className="table-responsive">
-                        <Table className="table-borderless mb-0">
-                          <tbody>
-                            <tr>
-                              <th className="ps-0" scope="row">
-                                School Name :
-                              </th>
-                              <td className="text-muted">Cruise School</td>
-                            </tr>
-                            <tr>
-                              <th className="ps-0" scope="row">
-                                Mobile :
-                              </th>
-                              <td className="text-muted">+(251) 9********</td>
-                            </tr>
-                            <tr>
-                              <th className="ps-0" scope="row">
-                                E-mail :
-                              </th>
-                              <td className="text-muted">
-                                cruiseschool@gmail.com
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-0" scope="row">
-                                Location :
-                              </th>
-                              <td className="text-muted">
-                                Bisrate Gebrieal, Addis Ababa
-                              </td>
-                            </tr>
-                            {/* <tr>
+          <Row>
+            <Col lg={12}>
+              <TabContent className="pt-5">
+                <TabPane>
+                  <Row>
+                    <Col xxl={3}>
+                      <Card>
+                        <CardBody>
+                          <h5 className="card-title mb-3">Info</h5>
+                          <div className="table-responsive">
+                            <Table className="table-borderless mb-0">
+                              <tbody>
+                                <tr>
+                                  <th className="ps-0" scope="row">
+                                    School Name :
+                                  </th>
+                                  <td className="text-muted">Cruise School</td>
+                                </tr>
+                                <tr>
+                                  <th className="ps-0" scope="row">
+                                    Mobile :
+                                  </th>
+                                  <td className="text-muted">
+                                    +(251) 9********
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th className="ps-0" scope="row">
+                                    E-mail :
+                                  </th>
+                                  <td className="text-muted">
+                                    cruiseschool@gmail.com
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th className="ps-0" scope="row">
+                                    Location :
+                                  </th>
+                                  <td className="text-muted">
+                                    Bisrate Gebrieal, Addis Ababa
+                                  </td>
+                                </tr>
+                                {/* <tr>
                               <th className="ps-0" scope="row">
                                 Joining Date
                               </th>
                               <td className="text-muted">24 Nov 2021</td>
                             </tr> */}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </CardBody>
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
-          </TabContent>
+                              </tbody>
+                            </Table>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col xxl={9}>
+                      <Card>
+                        <CardBody>
+                          <h5 className="card-title mb-3">About</h5>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Non minus inventore ratione quos mollitia
+                            velit libero modi, necessitatibus enim commodi
+                            quisquam sed labore pariatur deleniti neque
+                            molestiae, eius, id eaque itaque illum a! Quis amet
+                            expedita ut quaerat, sit provident. Accusamus
+                            placeat, deleniti accusantium magni praesentium
+                            veritatis ex ducimus, iure quos, corporis dolor sit
+                            illum cupiditate nisi deserunt quidem velit culpa
+                            dignissimos officiis obcaecati libero! Consequuntur,
+                            minima corrupti ipsam ipsum suscipit veniam
+                            repellendus voluptatibus esse harum nesciunt enim
+                            eaque fuga fugit, soluta, qui facere inventore?
+                            Quidem earum accusamus veniam debitis, at molestias
+                            aperiam dolor suscipit sequi porro impedit, culpa
+                            magni?
+                          </p>
+                          <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Est dolore adipisci, rem vel, quae non ullam
+                            ipsa vero numquam ad necessitatibus ipsum? Neque,
+                            omnis eaque mollitia eveniet quis similique non
+                            exercitationem fuga suscipit placeat magni, sed
+                            voluptate quibusdam sequi atque veniam at aut
+                            cupiditate voluptas ex harum. Deserunt, dolorem
+                            fuga.
+                          </p>
+                          <Row>
+                            <Col xs={6} md={4}>
+                              <div className="d-flex mt-4">
+                                <div className="flex-shrink-0 avatar-xs align-self-center me-3">
+                                  <div className="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i className="ri-user-2-fill"></i>
+                                  </div>
+                                </div>
+                                <div className="flex-grow-1 overflow-hidden">
+                                  <p className="mb-1">Address :</p>
+                                  <h6 className="text-truncate mb-0">
+                                    Addis Ababa, Ethiopia
+                                  </h6>
+                                </div>
+                              </div>
+                            </Col>
+
+                            <Col xs={6} md={4}>
+                              <div className="d-flex mt-4">
+                                <div className="flex-shrink-0 avatar-xs align-self-center me-3">
+                                  <div className="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i className="ri-global-line"></i>
+                                  </div>
+                                </div>
+                                <div className="flex-grow-1 overflow-hidden">
+                                  <p className="mb-1">Email :</p>
+                                  <Link to="#" className="fw-semibold">
+                                    cruiseschool@gmail.com
+                                  </Link>
+                                </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  </Row>
+                </TabPane>
+              </TabContent>
+            </Col>
+          </Row>
         </Container>
       </div>
     </React.Fragment>
