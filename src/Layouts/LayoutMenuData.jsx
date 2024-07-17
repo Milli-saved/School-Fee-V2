@@ -172,10 +172,23 @@ const Navdata = () => {
         ]
       : [
           {
-            id: "roles",
+            id: "school",
             label: "School",
             icon: "las la-table",
             link: "/school",
+            click: function (e) {
+              e.preventDefault();
+              setIsTables(!isTables);
+              setIscurrentState("Tables");
+              updateIconSidebar(e);
+            },
+            stateVariables: isTables,
+          },
+          {
+            id: "student",
+            label: "Students",
+            icon: "las la-table",
+            link: "/students",
             click: function (e) {
               e.preventDefault();
               setIsTables(!isTables);
