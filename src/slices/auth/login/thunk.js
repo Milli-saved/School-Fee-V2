@@ -53,10 +53,15 @@ export const loginUser = (user, history) => async (dispatch) => {
     if (data) {
       sessionStorage.setItem("authUser", JSON.stringify(data));
       dispatch(loginSuccess(data));
-      history("/dashboard");
+      console.log("the data: ", data);
+      if (data.roles == 0) {
+        history("/dashboard");
+      }
+      if (data.roles == 2002) {
+        history("/school");
+      }
     }
   } catch (error) {
     dispatch(apiError(error));
   }
 };
-
