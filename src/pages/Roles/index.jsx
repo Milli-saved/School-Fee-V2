@@ -45,13 +45,19 @@ const Status = ({ status }) => {
   switch (status) {
     case 0:
       return (
-        <span className="badge bg-info-subtle text-info text-uppercase">
+        <span className="badge bg-info-subtle text-success text-uppercase">
           Super Admin
         </span>
       );
     case 2001:
       return (
         <span className="badge bg-warning-subtle text-warning text-uppercase">
+          CBE Branch
+        </span>
+      );
+    case 2002:
+      return (
+        <span className="badge bg-warning-subtle text-danger text-uppercase">
           School Admin
         </span>
       );
@@ -78,7 +84,7 @@ const Priority = ({ priority }) => {
       );
     default:
       return (
-        <span className="badge bg-success text-uppercase">{priority}</span>
+        <span className="badge bg-info text-uppercase">{priority}</span>
       );
   }
 };
