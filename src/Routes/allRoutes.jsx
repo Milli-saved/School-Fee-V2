@@ -7,12 +7,14 @@ import DashboardEcommerce from "../pages/Dashboard";
 import Roles from "../pages/Roles";
 import SchoolDashboard from "../pages/SchoolDashboard";
 import StudentsBoard from "../pages/Students";
+import StudentsList from "../pages/Students/StudentsList";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <DashboardEcommerce /> },
   { path: "/roles", component: <Roles /> },
   { path: "/school", component: <SchoolDashboard /> },
   { path: "/students", component: <StudentsBoard /> },
+  { path: "/student-list", component: <StudentsList /> },
 ];
 
 const publicRoutes = [
