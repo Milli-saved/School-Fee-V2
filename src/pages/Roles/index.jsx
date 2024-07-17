@@ -83,9 +83,7 @@ const Priority = ({ priority }) => {
         <span className="badge bg-success text-uppercase">{priority}</span>
       );
     default:
-      return (
-        <span className="badge bg-info text-uppercase">{priority}</span>
-      );
+      return <span className="badge bg-info text-uppercase">{priority}</span>;
   }
 };
 
