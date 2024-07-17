@@ -50,7 +50,7 @@ import smallImage7 from "../../assets/images/small/img-7.jpg";
 import smallImage9 from "../../assets/images/small/img-9.jpg";
 
 const index = () => {
-  document.title = "Student";
+  document.title = "School";
   return (
     <React.Fragment>
       <div className="page-content">
