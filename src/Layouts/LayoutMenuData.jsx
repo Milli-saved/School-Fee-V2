@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useProfile } from "../Components/Hooks/UserHooks";
+
 const Navdata = () => {
+  const { userProfile, loading, token } = useProfile();
+  // const selectAccountState = (state) => state;
+  // const selectProfileProperties = createSelector(
+  //   selectAccountState,
+  //   (state) => ({
+  //     user: state.Login.user,
+  //   })
+  // );
+  // const { user } = useSelector(selectProfileProperties);
+  console.log("the user: ", userProfile);
+
   const history = useNavigate();
   //state data
   const [isDashboard, setIsDashboard] = useState(false);
@@ -135,35 +148,52 @@ const Navdata = () => {
     isMultiLevel,
   ]);
 
-  const menuItems = [
-    {
-      label: "MENU",
-      isHeader: true,
-    },
-    {
-      id: "dashboard",
-      label: "Dashboard",
-      icon: "las la-flask",
-      link: "/dashboard",
-      click: function (e) {
-        e.preventDefault();
-        setIscurrentState("Widgets");
-      },
-    },
-    {
-      id: "roles",
-      label: "Roles",
-      icon: "las la-table",
-      link: "/roles",
-      click: function (e) {
-        e.preventDefault();
-        setIsTables(!isTables);
-        setIscurrentState("Tables");
-        updateIconSidebar(e);
-      },
-      stateVariables: isTables,
-    },
-  ];
+  const menuItems =
+    userProfile.roles === 0
+      ? [
+          {
+            label: "MENU",
+            isHeader: true,
+          },
+          {
+            id: "dashboard",
+            label: "Dashboard",
+            icon: "las la-flask",
+            link: "/dashboard",
+            click: function (e) {
+              e.preventDefault();
+              setIscurrentState("Widgets");
+            },
+          },
+          {
+            id: "roles",
+            label: "Roles",
+            icon: "las la-table",
+            link: "/roles",
+            click: function (e) {
+              e.preventDefault();
+              setIsTables(!isTables);
+              setIscurrentState("Tables");
+              updateIconSidebar(e);
+            },
+            stateVariables: isTables,
+          },
+        ]
+      : [
+          {
+            id: "roles",
+            label: "School",
+            icon: "las la-table",
+            link: "/school",
+            click: function (e) {
+              e.preventDefault();
+              setIsTables(!isTables);
+              setIscurrentState("Tables");
+              updateIconSidebar(e);
+            },
+            stateVariables: isTables,
+          },
+        ];
   return <React.Fragment>{menuItems}</React.Fragment>;
 };
 export default Navdata;
