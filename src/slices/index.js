@@ -6,6 +6,7 @@ import AccountReducer from "./auth/register/reducer";
 import ProfileReducer from "./auth/profile/reducer";
 import ForgetPasswordReducer from "./auth/forgetpwd/reducer";
 import TodosReducer from "./todos/reducer";
+import StudentReducer from "./students/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   Profile: ProfileReducer,
   ForgetPassword: ForgetPasswordReducer,
   Todos: TodosReducer,
+  Students: StudentReducer,
 });
 
 export default rootReducer;
