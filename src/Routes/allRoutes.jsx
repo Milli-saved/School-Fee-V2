@@ -14,7 +14,7 @@ const authProtectedRoutes = [
   { path: "/roles", component: <Roles /> },
   { path: "/school", component: <SchoolDashboard /> },
   { path: "/students", component: <StudentsBoard /> },
-  { path: "/student-list", component: <StudentsList /> },
+  { path: "/student-list/:id", component: <StudentsList /> },
 ];
 
 const publicRoutes = [

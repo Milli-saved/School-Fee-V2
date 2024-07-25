@@ -17,7 +17,7 @@ import SimpleBar from "simplebar-react";
 import Flatpickr from "react-flatpickr";
 // import Dragula from "react-dragula";
 import { ToastContainer } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import taskImg from "../../assets/images/task.png";
 import DeleteModal from "../../Components/Common/DeleteModal";
 
@@ -91,6 +91,7 @@ const index = () => {
   document.title = "Roles";
 
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const selectLayoutState = (state) => state.Todos;
   const selectState = (state) => state;
@@ -324,31 +325,6 @@ const index = () => {
     }),
     onSubmit: (values) => {
       console.log("the values: ", values);
-      // if (isEdit) {
-      //   const updateTodo = {
-      //     id: todo ? todo.id : 0,
-      //     task: values.task,
-      //     dueDate: date,
-      //     status: values.status,
-      //     priority: values.priority,
-      //   };
-      //   // save edit Folder
-      //   dispatch(onupdateTodo(updateTodo));
-      //   validation.resetForm();
-      // } else {
-      //   const newTodo = {
-      //     id: (Math.floor(Math.random() * (30 - 20)) + 20).toString(),
-      //     task: values.task,
-      //     dueDate: date,
-      //     status: values.status,
-      //     priority: values.priority,
-      //     subItem: assigned,
-      //   };
-      //   // save new Folder
-      //   dispatch(onAddNewTodo(newTodo));
-      //   validation.resetForm();
-      // }
-      // toggle();
     },
   });
 
@@ -377,12 +353,6 @@ const index = () => {
 
   return (
     <React.Fragment>
-      {/* <ToastContainer closeButton={false} /> */}
-      {/* <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => handleDeleteTodo()}
-        onCloseClick={() => setDeleteModal(false)}
-      /> */}
       <div className="page-content">
         <Container fluid>
           <div className="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
@@ -397,7 +367,7 @@ const index = () => {
                   </button>
                 </div>
                 <div className="col-sm order-3 order-sm-2 mt-3 mt-sm-0">
-                  <h5 className="fw-semibold mb-0">Grade X Students </h5>
+                  <h5 className="fw-semibold mb-0">{id} Students </h5>
                 </div>
               </Row>
               <div className="p-3 bg-light rounded mb-4">

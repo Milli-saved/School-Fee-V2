@@ -64,7 +64,10 @@ const Grades = () => {
                     <div className="d-flex align-items-center">
                       <div className="flex-grow-1">
                         <h5 className="mb-0 fs-15">
-                          <Link to="/student-list" className="text-body">
+                          <Link
+                            to={`/student-list/${item.label}`}
+                            className="text-body"
+                          >
                             {item.label}
                           </Link>
                         </h5>
