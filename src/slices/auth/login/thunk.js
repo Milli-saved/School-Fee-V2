@@ -57,7 +57,7 @@ export const loginUser = (user, history) => async (dispatch) => {
       if (data.roles == 0) {
         history("/dashboard");
       }
-      if (data.roles == 2002) {
+      if (data.roles == 2001) {
         history("/school");
       }
     }

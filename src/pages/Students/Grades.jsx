@@ -14,136 +14,46 @@ import {
 // import DeleteModal from "../../../Components/Common/DeleteModal";
 import { ToastContainer } from "react-toastify";
 import FeatherIcon from "feather-icons-react";
+import { useSelector } from "react-redux";
 
 const Grades = () => {
-  const allData = [
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 1",
-      caption: "create a brand logo design",
-      number: "18/42",
-      statusClass: "success",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "danger",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 2",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "danger",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 3",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "danger",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 4",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "danger",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 5",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "success",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 6",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "success",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 7",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "success",
-    },
-    {
-      id: 1,
-      isDesign1: true,
-      time: "updated 3hrs ago",
-      img: "",
-      imgbgColor: "warning",
-      label: "Grade 8",
-      caption: "create a brand logo design",
-      number: "18/42",
-      progressBar: "34%",
-      subItem: [],
-      date: "10 Jul, 2021",
-      ratingClass: "",
-      cardHeaderClass: "success",
-    },
-  ];
+  const { school } = useSelector((state) => state.Students);
+  const [correctGrade, setCorrectGrade] = useState(null);
+  let allGrades = [];
+  useEffect(() => {
+    school[0].educationalDivisions.map((eachEducationalDivision, key) => {
+      eachEducationalDivision.subDivision.map((eachSubDivision, key) => {
+        console.log("the grades are: ", eachSubDivision.subDivisionName);
+        allGrades.push({
+          id: 1,
+          isDesign1: true,
+          time: "updated 3hrs ago",
+          img: "",
+          imgbgColor: "warning",
+          label: eachSubDivision.subDivisionName,
+          caption: "create a brand logo design",
+          number: "18/42",
+          statusClass: "success",
+          progressBar: "34%",
+          subItem: [],
+          date: "10 Jul, 2021",
+          ratingClass: "",
+          cardHeaderClass: "danger",
+        });
+      });
+    });
+  }, [school]);
+
+  useEffect(() => {
+    setCorrectGrade(allGrades);
+  }, []);
+  console.log("all grades: ", correctGrade);
+
   return (
     <React.Fragment>
       {/* <ToastContainer closeButton={false} /> */}
       <div className="row">
-        {(allData || []).map((item, key) => (
+        {(correctGrade || []).map((item, key) => (
           <React.Fragment key={key}>
             <Col xxl={3} sm={6} className="project-card">
               <Card>

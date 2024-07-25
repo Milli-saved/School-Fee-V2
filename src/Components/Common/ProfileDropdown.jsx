@@ -31,7 +31,7 @@ const ProfileDropdown = () => {
       if (userProfile.roles == 0) {
         setRole("Super Admin");
       }
-      if (userProfile.roles == 2002) {
+      if (userProfile.roles == 2001) {
         setRole("School Admin");
       }
     }

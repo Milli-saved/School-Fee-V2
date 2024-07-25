@@ -55,7 +55,7 @@ const Status = ({ status }) => {
           CBE Branch
         </span>
       );
-    case 2002:
+    case 2001:
       return (
         <span className="badge bg-warning-subtle text-danger text-uppercase">
           School Admin
@@ -354,8 +354,8 @@ const ToDoList = () => {
 
   const allRoles = [
     { id: 1, value: "Super Admin", code: "0000" },
-    { id: 2, value: "CBE Branch", code: "2001" },
-    { id: 3, value: "School Admin", code: "2002" },
+    { id: 2, value: "CBE Branch", code: "2002" },
+    { id: 3, value: "School Admin", code: "2001" },
   ];
 
   const [fullName, setFullName] = useState("");

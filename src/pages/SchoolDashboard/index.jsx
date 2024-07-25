@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -32,25 +32,39 @@ import SwiperCore from "swiper";
 
 //Images
 import profileBg from "../../assets/images/profile-bg.jpg";
-import avatar1 from "../../assets/images/users/avatar-1.jpg";
-import avatar2 from "../../assets/images/users/avatar-2.jpg";
-import avatar3 from "../../assets/images/users/avatar-3.jpg";
-import avatar4 from "../../assets/images/users/avatar-4.jpg";
-import avatar5 from "../../assets/images/users/avatar-5.jpg";
-import avatar6 from "../../assets/images/users/avatar-6.jpg";
-import avatar7 from "../../assets/images/users/avatar-7.jpg";
-import avatar8 from "../../assets/images/users/avatar-8.jpg";
+// import avatar1 from "../../assets/images/users/avatar-1.jpg";
+// import avatar2 from "../../assets/images/users/avatar-2.jpg";
+// import avatar3 from "../../assets/images/users/avatar-3.jpg";
+// import avatar4 from "../../assets/images/users/avatar-4.jpg";
+// import avatar5 from "../../assets/images/users/avatar-5.jpg";
+// import avatar6 from "../../assets/images/users/avatar-6.jpg";
+// import avatar7 from "../../assets/images/users/avatar-7.jpg";
+// import avatar8 from "../../assets/images/users/avatar-8.jpg";
 
-import smallImage2 from "../../assets/images/small/img-2.jpg";
-import smallImage3 from "../../assets/images/small/img-3.jpg";
-import smallImage4 from "../../assets/images/small/img-4.jpg";
-import smallImage5 from "../../assets/images/small/img-5.jpg";
-import smallImage6 from "../../assets/images/small/img-6.jpg";
-import smallImage7 from "../../assets/images/small/img-7.jpg";
-import smallImage9 from "../../assets/images/small/img-9.jpg";
+// import smallImage2 from "../../assets/images/small/img-2.jpg";
+// import smallImage3 from "../../assets/images/small/img-3.jpg";
+// import smallImage4 from "../../assets/images/small/img-4.jpg";
+// import smallImage5 from "../../assets/images/small/img-5.jpg";
+// import smallImage6 from "../../assets/images/small/img-6.jpg";
+// import smallImage7 from "../../assets/images/small/img-7.jpg";
+// import smallImage9 from "../../assets/images/small/img-9.jpg";
+import { getSchools } from "../../slices/students/thunk";
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
 
 const index = () => {
+  const dispatch = useDispatch();
   document.title = "School";
+  useEffect(() => {
+    dispatch(getSchools());
+  }, []);
+
+  // const selectState = (state) => state;
+  // const schoolState = createSelector(selectState, (state) => ({
+  //   student: state.Students,
+  // }));
+  const { school } = useSelector((state) => state.Students);
+  // console.log("the school: ", school);
   return (
     <React.Fragment>
       <div className="page-content">
@@ -74,34 +88,15 @@ const index = () => {
 
               <Col>
                 <div className="p-2">
-                  <h3 className="text-white mb-1">Cruise School</h3>
+                  <h3 className="text-white mb-1">{school[0]?.schoolName}</h3>
                   <p className="text-white text-opacity-75">
-                    cruiseschool@gmail.com
+                    {school[0]?.schoolEmail}
                   </p>
                   <div className="hstack text-white-50 gap-1">
-                    <div className="me-2">
-                      {/* <i className="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i> */}
-                      Bisrate Gebrieal, Addis Ababa
-                    </div>
+                    <div className="me-2">{school[0]?.schoolCity}</div>
                   </div>
                 </div>
               </Col>
-              {/* <Col xs={12} className="col-lg-auto order-last order-lg-0">
-                <Row className="text text-white-50 text-center">
-                  <Col lg={6} xs={4}>
-                    <div className="p-2">
-                      <h4 className="text-white mb-1">24.3K</h4>
-                      <p className="fs-14 mb-0">Followers</p>
-                    </div>
-                  </Col>
-                  <Col lg={6} xs={4}>
-                    <div className="p-2">
-                      <h4 className="text-white mb-1">1.3K</h4>
-                      <p className="fs-14 mb-0">Following</p>
-                    </div>
-                  </Col>
-                </Row>
-              </Col> */}
             </Row>
           </div>
           {/*  */}
@@ -121,14 +116,16 @@ const index = () => {
                                   <th className="ps-0" scope="row">
                                     School Name :
                                   </th>
-                                  <td className="text-muted">Cruise School</td>
+                                  <td className="text-muted">
+                                    {school[0]?.schoolName}
+                                  </td>
                                 </tr>
                                 <tr>
                                   <th className="ps-0" scope="row">
                                     Mobile :
                                   </th>
                                   <td className="text-muted">
-                                    +(251) 9********
+                                    {school[0]?.schoolPhone}
                                   </td>
                                 </tr>
                                 <tr>
@@ -136,7 +133,7 @@ const index = () => {
                                     E-mail :
                                   </th>
                                   <td className="text-muted">
-                                    cruiseschool@gmail.com
+                                    {school[0]?.schoolEmail}
                                   </td>
                                 </tr>
                                 <tr>
@@ -144,7 +141,8 @@ const index = () => {
                                     Location :
                                   </th>
                                   <td className="text-muted">
-                                    Bisrate Gebrieal, Addis Ababa
+                                    {school[0]?.schoolSubcity},{" "}
+                                    {school[0]?.schoolCity}
                                   </td>
                                 </tr>
                                 {/* <tr>
@@ -202,7 +200,8 @@ const index = () => {
                                 <div className="flex-grow-1 overflow-hidden">
                                   <p className="mb-1">Address :</p>
                                   <h6 className="text-truncate mb-0">
-                                    Addis Ababa, Ethiopia
+                                    {school[0]?.schoolSubcity},{" "}
+                                    {school[0]?.schoolCity}
                                   </h6>
                                 </div>
                               </div>
@@ -218,7 +217,7 @@ const index = () => {
                                 <div className="flex-grow-1 overflow-hidden">
                                   <p className="mb-1">Email :</p>
                                   <Link to="#" className="fw-semibold">
-                                    cruiseschool@gmail.com
+                                    {school[0]?.schoolEmail}
                                   </Link>
                                 </div>
                               </div>
