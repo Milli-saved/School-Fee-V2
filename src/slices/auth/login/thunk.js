@@ -46,7 +46,7 @@ export const loginUser = (user, history) => async (dispatch) => {
   try {
     console.log("in the slice: ", user);
     let response = await axios.post(
-      "http://localhost:5000/api/users/login",
+      "http://localhost:5000/api/users/adminlogin",
       user
     );
     var data = response;
@@ -57,7 +57,7 @@ export const loginUser = (user, history) => async (dispatch) => {
       if (data.roles == 0) {
         history("/dashboard");
       }
-      if (data.roles == 2001) {
+      if (data.roles == 2002) {
         history("/school");
       }
     }

@@ -38,6 +38,7 @@ import {
   addNewProject as onAddNewProject,
   RegisterUsers,
   getAllUsers as GetAllUsers,
+  getAllSchools,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
 
@@ -55,7 +56,7 @@ const Status = ({ status }) => {
           CBE Branch
         </span>
       );
-    case 2001:
+    case 2002:
       return (
         <span className="badge bg-warning-subtle text-danger text-uppercase">
           School Admin
@@ -101,8 +102,11 @@ const ToDoList = () => {
   const selectProfileProperties = createSelector(selectState, (state) => ({
     success: state.Account.success,
     allUsers: state.Todos.allUsers,
+    allSchools: state.Students.allschools,
   }));
-  const { success, allUsers } = useSelector(selectProfileProperties);
+  const { success, allUsers, allSchools } = useSelector(
+    selectProfileProperties
+  );
   // Inside your component
   const { todos, projects } = useSelector(selectLayoutProperties);
 
@@ -125,6 +129,7 @@ const ToDoList = () => {
 
   useEffect(() => {
     dispatch(GetAllUsers());
+    dispatch(getAllSchools());
   }, [dispatch]);
 
   useEffect(() => {
@@ -354,13 +359,25 @@ const ToDoList = () => {
 
   const allRoles = [
     { id: 1, value: "Super Admin", code: "0000" },
-    { id: 2, value: "CBE Branch", code: "2002" },
-    { id: 3, value: "School Admin", code: "2001" },
+    { id: 2, value: "CBE Branch", code: "2001" },
+    { id: 3, value: "School Admin", code: "2002" },
   ];
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [schoolId, setSchoolId] = useState("");
+
+  const setWhich = (e) => {
+    setRole(e.target.value);
+    setSelectedOption(e.target.value);
+  };
+
+  const setSchool = (e) => {
+    setSchoolId(e.target.value);
+    console.log("school id value: ", e.target.value);
+  };
 
   const RegisterAccount = () => {
     let userData = {
@@ -369,6 +386,7 @@ const ToDoList = () => {
       roles: Number(role),
       password: "Welcome@2CBE",
       secretKey: "yitopretrtyio0594-yopiyr0954",
+      schoolId: schoolId,
     };
     dispatch(RegisterUsers(userData));
     setModalTodo(!modalTodo);
@@ -631,7 +649,7 @@ const ToDoList = () => {
                   type="select"
                   className="form-select"
                   id="status-field"
-                  onChange={(e) => setRole(e.target.value)}
+                  onChange={(e) => setWhich(e)}
                   onBlur={validation.handleBlur}
                   value={role}
                 >
@@ -644,6 +662,35 @@ const ToDoList = () => {
                   ))}
                 </Input>
               </div>
+              {selectedOption === "2002" && (
+                <div className="mb-3 mt-2">
+                  <label htmlFor="task-title-input" className="form-label">
+                    School ID
+                  </label>
+                  <Input
+                    name="role"
+                    type="select"
+                    className="form-select"
+                    id="status-field"
+                    onChange={(e) => setSchool(e)}
+                    onBlur={validation.handleBlur}
+                    value={role}
+                  >
+                    {allSchools?.map((item, key) => (
+                      <React.Fragment key={key}>
+                        <option value={item.schoolId} key={key}>
+                          {item.schoolName}
+                        </option>
+                      </React.Fragment>
+                    ))}
+                  </Input>
+                  {validation.touched.task && validation.errors.task ? (
+                    <FormFeedback type="invalid">
+                      {validation.errors.task}
+                    </FormFeedback>
+                  ) : null}
+                </div>
+              )}
             </div>
             <div className="hstack gap-2 justify-content-end">
               <button

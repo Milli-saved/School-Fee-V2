@@ -26,7 +26,22 @@ export const getAllStudentsInGrade = createAsyncThunk(
   "students/getAllStudentsInGrade",
   async () => {
     try {
-      const response = await axios.get();
+      // console.log()
+      const response = await axios.get(
+        "http://localhost:5000/api/schools/what"
+      );
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const getAllSchools = createAsyncThunk(
+  "students/getAllSchools",
+  async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/schools/all");
       return response;
     } catch (error) {
       return error;

@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllGrades, getAllStudentsInGrade, getSchools } from "./thunk";
+import {
+  getAllGrades,
+  // getAllStudentsInGrade,
+  getSchools,
+  getAllStudentsInGrade,
+  getAllSchools,
+} from "./thunk";
 
 export const initialState = {
+  allschools: [],
   school: [],
   students: [],
   grades: [],
@@ -23,6 +30,12 @@ const StudentsSlice = createSlice({
     builder.addCase(getSchools.fulfilled, (state, action) => {
       console.log("THE ACTION: ", action);
       state.school = action.payload;
+    });
+    builder.addCase(getAllStudentsInGrade.fulfilled, (state, action) => {
+      console.log("action: ", action);
+    });
+    builder.addCase(getAllSchools.fulfilled, (state, action) => {
+      state.allschools = action.payload;
     });
   },
 });
