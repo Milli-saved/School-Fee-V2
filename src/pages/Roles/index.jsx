@@ -374,11 +374,6 @@ const ToDoList = () => {
     setSelectedOption(e.target.value);
   };
 
-  const setSchool = (e) => {
-    setSchoolId(e.target.value);
-    console.log("school id value: ", e.target.value);
-  };
-
   const RegisterAccount = () => {
     let userData = {
       name: fullName,
@@ -672,10 +667,12 @@ const ToDoList = () => {
                     type="select"
                     className="form-select"
                     id="status-field"
-                    onChange={(e) => setSchool(e)}
+                    onChange={(e) => setSchoolId(e.target.value)}
                     onBlur={validation.handleBlur}
-                    value={role}
+                    // value={}
                   >
+                    <option>Select the School.</option>
+                    {/* {console.log("*****: ", typeof allSchools[0].schoolId)} */}
                     {allSchools?.map((item, key) => (
                       <React.Fragment key={key}>
                         <option value={item.schoolId} key={key}>

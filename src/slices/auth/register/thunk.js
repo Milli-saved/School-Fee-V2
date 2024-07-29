@@ -46,7 +46,7 @@ export const RegisterUsers = (userData) => async (dispatch) => {
   try {
     console.log("Register Data: ", userData);
     let response = await axios.post(
-      "http://localhost:5000/api/users",
+      "http://localhost:5000/api/users/register",
       userData
     );
     var data = response;

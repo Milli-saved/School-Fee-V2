@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const user = sessionStorage.getItem("authUser");
 export const initialState = {
-  user: {},
+  user: user ? JSON.parse(user) : {},
   error: "",
   loading: false,
   isUserLogout: false,

@@ -28,7 +28,6 @@ const StudentsSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(getSchools.fulfilled, (state, action) => {
-      console.log("THE ACTION: ", action);
       state.school = action.payload;
     });
     builder.addCase(getAllStudentsInGrade.fulfilled, (state, action) => {

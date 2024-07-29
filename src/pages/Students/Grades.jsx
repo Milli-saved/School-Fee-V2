@@ -21,9 +21,8 @@ const Grades = () => {
   const [correctGrade, setCorrectGrade] = useState(null);
   let allGrades = [];
   useEffect(() => {
-    school[0]?.educationalDivisions?.map((eachEducationalDivision, key) => {
+    school?.educationalDivisions?.map((eachEducationalDivision, key) => {
       eachEducationalDivision.subDivision.map((eachSubDivision, key) => {
-        console.log("the grades are: ", eachSubDivision.subDivisionName);
         allGrades.push({
           id: 1,
           isDesign1: true,
@@ -47,7 +46,6 @@ const Grades = () => {
   useEffect(() => {
     setCorrectGrade(allGrades);
   }, []);
-  console.log("all grades: ", correctGrade);
 
   return (
     <React.Fragment>
