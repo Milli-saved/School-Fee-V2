@@ -31,7 +31,8 @@ const StudentsSlice = createSlice({
       state.school = action.payload;
     });
     builder.addCase(getAllStudentsInGrade.fulfilled, (state, action) => {
-      console.log("action: ", action);
+      console.log("action: ", action.payload);
+      state.students = action.payload.students;
     });
     builder.addCase(getAllSchools.fulfilled, (state, action) => {
       state.allschools = action.payload;

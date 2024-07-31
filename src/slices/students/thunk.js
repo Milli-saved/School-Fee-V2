@@ -5,7 +5,7 @@ export const getSchools = createAsyncThunk(
   "students/getSchools",
   async (schoolId) => {
     try {
-      const NumSchoolId = Number(schoolId)
+      const NumSchoolId = Number(schoolId);
       const response = await axios.get(
         `http://localhost:5000/api/schools/admin/${NumSchoolId}`
       );
@@ -30,11 +30,21 @@ export const getAllGrades = createAsyncThunk(
 
 export const getAllStudentsInGrade = createAsyncThunk(
   "students/getAllStudentsInGrade",
-  async () => {
+  async (id, thunkAPI) => {
+    console.log("the id **** : ", id);
+    const schoolId = thunkAPI.getState().Login.user.schoolId;
+
+    console.log("is the school here: ", schoolId);
     try {
       // console.log()
       const response = await axios.get(
-        "http://localhost:5000/api/schools/what"
+        `http://localhost:5000/api/students/getgrade/`,
+        {
+          headers: {
+            schoolId,
+            grade: id,
+          },
+        }
       );
       return response;
     } catch (error) {

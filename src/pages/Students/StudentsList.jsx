@@ -41,6 +41,7 @@ import {
   getAllStudentsInGrade,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
+import StudentDetails from "./StudentDetails";
 
 const Status = ({ status }) => {
   switch (status) {
@@ -93,7 +94,12 @@ const index = () => {
 
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { user } = useSelector((state) => state.Login);
 
+  const [schoolId, setSchoolId] = useState("");
+  useEffect(() => {
+    setSchoolId(user.schoolId);
+  }, []);
   const selectLayoutState = (state) => state.Todos;
   const selectState = (state) => state;
   const selectLayoutProperties = createSelector(selectLayoutState, (state) => ({
@@ -108,6 +114,8 @@ const index = () => {
   // Inside your component
   const { todos, projects } = useSelector(selectLayoutProperties);
 
+  const { students } = useSelector((state) => state.Students);
+  console.log("the stud: ", students);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const [taskList, setTaskList] = useState([]);
@@ -124,11 +132,8 @@ const index = () => {
   const [todo, setTodo] = useState(null);
   const [modalTodo, setModalTodo] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-
   useEffect(() => {
-    dispatch(GetAllUsers());
     dispatch(getAllStudentsInGrade(id));
-
   }, [dispatch]);
 
   useEffect(() => {
@@ -430,40 +435,77 @@ const index = () => {
                     <table className="table align-middle position-relative table-nowrap">
                       <thead className="table-active">
                         <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">Role</th>
-                          <th scope="col">Email</th>
+                          <th scope="col">Student Id</th>
+                          <th scope="col">Student Name</th>
+                          <th scope="col">School Name</th>
+                          <th scope="col">Gender</th>
+                          <th scope="col">Grade</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody id="task-list">
-                        {(allUsers || []).map((item, key) => (
+                        {(students || []).map((item, key) => (
                           <tr key={key}>
                             <td>
                               <div className="d-flex align-items-start">
                                 <div className="flex-grow-1">
-                                  <div className="form-check">{item.name}</div>
+                                  <div className="form-check">
+                                    {item.studentIdNumber}
+                                  </div>
                                 </div>
                               </div>
                             </td>
                             <td>
-                              <Status status={item.roles} />
+                              <div className="d-flex align-items-start">
+                                <div className="flex-grow-1">
+                                  <div className="form-check">
+                                    {item.studentFirstName}{" "}
+                                    {item.studentFatherName}
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                             <td>
-                              <Priority priority={item.email} />
+                              <div className="d-flex align-items-start">
+                                <div className="flex-grow-1">
+                                  <div className="form-check">
+                                    {item.schoolName}
+                                  </div>
+                                </div>
+                              </div>
+                              {/* <Priority priority={item.schoolName} /> */}
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-start">
+                                <div className="flex-grow-1">
+                                  <div className="form-check">
+                                    {item.studentGender}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-start">
+                                <div className="flex-grow-1">
+                                  <div className="form-check">
+                                    {item.studentGrade}
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                             <td>
                               <div className="hstack gap-2">
-                                <button
+                                {/* <button
                                   className="btn btn-sm btn-soft-danger remove-list"
                                   onClick={() => onClickTodoDelete(item)}
                                 >
                                   <i className="ri-delete-bin-5-fill align-bottom" />
-                                </button>
+                                </button> */}
                                 <button
                                   className="btn btn-sm btn-soft-info edit-list"
                                   onClick={() => handleTodoClick(item)}
                                 >
+                                  Details
                                   <i className="ri-pencil-fill align-bottom" />
                                 </button>
                               </div>
@@ -503,106 +545,10 @@ const index = () => {
       >
         <ModalHeader toggle={toggle} className="p-3 bg-success-subtle">
           {" "}
-          {!!isEdit ? "Edit Task" : "Create Role"}{" "}
+          {!!isEdit ? "Student Detail" : "Create Role"}{" "}
         </ModalHeader>
         <ModalBody>
-          <div id="task-error-msg" className="alert alert-danger py-2"></div>
-          <Form
-            id="creattask-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // validation.handleSubmit();
-              // return false;
-              RegisterAccount();
-            }}
-          >
-            {/* <input type="hidden" id="taskid-input" className="form-control" /> */}
-            <div className="mb-3">
-              <label htmlFor="task-title-input" className="form-label">
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="task-title-input"
-                className="form-control"
-                placeholder="Enter Full Name"
-                name="task"
-                validate={{ required: { value: true } }}
-                onChange={(e) => setFullName(e.target.value)}
-                onBlur={validation.handleBlur}
-                value={fullName}
-                // invalid={validation.touched.task && validation.errors.task ? true : false}
-              />
-              {validation.touched.task && validation.errors.task ? (
-                <FormFeedback type="invalid">
-                  {validation.errors.task}
-                </FormFeedback>
-              ) : null}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="task-title-input" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                id="task-title-input"
-                className="form-control"
-                placeholder="Email"
-                name="email"
-                validate={{ required: { value: true } }}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={validation.handleBlur}
-                value={email}
-                // invalid={validation.touched.task && validation.errors.task ? true : false}
-              />
-              {validation.touched.task && validation.errors.task ? (
-                <FormFeedback type="invalid">
-                  {validation.errors.task}
-                </FormFeedback>
-              ) : null}
-            </div>
-            <div className="mb-3 position-relative">
-              <label htmlFor="task-assign-input" className="form-label">
-                Role
-              </label>
-
-              <div
-                className="avatar-group justify-content-center"
-                id="assignee-member"
-              ></div>
-              <div className="select-element">
-                <Input
-                  name="role"
-                  type="select"
-                  className="form-select"
-                  id="status-field"
-                  onChange={(e) => setRole(e.target.value)}
-                  onBlur={validation.handleBlur}
-                  value={role}
-                >
-                  {allRoles.map((item, key) => (
-                    <React.Fragment key={key}>
-                      <option value={item.code} key={key}>
-                        {item.value}
-                      </option>
-                    </React.Fragment>
-                  ))}
-                </Input>
-              </div>
-            </div>
-            <div className="hstack gap-2 justify-content-end">
-              <button
-                type="button"
-                className="btn btn-ghost-success"
-                onClick={() => setModalTodo(false)}
-              >
-                <i className="ri-close-fill align-bottom"></i> Close
-              </button>
-              <button type="submit" className="btn btn-primary" id="addNewTodo">
-                {!!isEdit ? "Save" : "Add Role"}
-              </button>
-            </div>
-          </Form>
+          <StudentDetails />
         </ModalBody>
       </Modal>
 
