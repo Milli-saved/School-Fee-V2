@@ -160,17 +160,12 @@ const index = () => {
   };
 
   // Update To do
+  const [selectedStudent, setSelectedStudent] = useState({});
   const handleTodoClick = useCallback(
     (arg) => {
       const todo = arg;
 
-      setTodo({
-        id: todo.id,
-        task: todo.task,
-        dueDate: todo.dueDate,
-        status: todo.status,
-        priority: todo.priority,
-      });
+      setSelectedStudent(arg);
 
       setIsEdit(true);
       toggle();
