@@ -1,100 +1,114 @@
-import React from "react";
-import {
-  Col,
-  Container,
-  DropdownItem,
-  DropdownMenu,
-  Form,
-  FormFeedback,
-  Input,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  Row,
-  UncontrolledCollapse,
-} from "reactstrap";
-import { useFormik } from "formik";
+import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import BreadCrumb from "../../Components/Common/BreadCrumb";
+import { Link } from "react-router-dom";
 
-const StudentDetails = () => {
+const StudentDetails = ({ selectedStudent }) => {
   return (
-    <>
-      <div id="task-error-msg" className="alert alert-danger py-2"></div>
-      <Form
-        id="creattask-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          // validation.handleSubmit();
-          // return false;
-          RegisterAccount();
-        }}
-      >
-        {/* <input type="hidden" id="taskid-input" className="form-control" /> */}
-        <div className="mb-3">
-          <label htmlFor="task-title-input" className="form-label">
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="task-title-input"
-            className="form-control"
-            placeholder="Enter Full Name"
-            name="task"
-            validate={{ required: { value: true } }}
-            // onChange={(e) => setFullName(e.target.value)}
-            // onBlur={validation.handleBlur}
-            // value={fullName}
-            // invalid={validation.touched.task && validation.errors.task ? true : false}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="task-title-input" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            id="task-title-input"
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            // validate={{ required: { value: true } }}
-            // onChange={(e) => setEmail(e.target.value)}
-            // value={email}
-          />
-        </div>
-        <div className="mb-3 position-relative">
-          <label htmlFor="task-assign-input" className="form-label">
-            Role
-          </label>
-
-          <div
-            className="avatar-group justify-content-center"
-            id="assignee-member"
-          ></div>
-          <div className="select-element">
-            <Input
-              name="role"
-              type="select"
-              className="form-select"
-              id="status-field"
-              //   onChange={(e) => setRole(e.target.value)}
-              //   value={role}
-            ></Input>
-          </div>
-        </div>
-        <div className="hstack gap-2 justify-content-end">
-          <button
-            type="button"
-            className="btn btn-ghost-success"
-            onClick={() => setModalTodo(false)}
-          >
-            <i className="ri-close-fill align-bottom"></i> Close
-          </button>
-          <button type="submit" className="btn btn-primary" id="addNewTodo">
-            Done
-          </button>
-        </div>
-      </Form>
-    </>
+    <div className="page-content">
+      <Container fluid>
+        <BreadCrumb title="Student Details" />
+        <Row>
+          <Col xl={9}>
+            <Card>
+              <CardHeader>
+                <div className="d-flex align-items-center">
+                  <h5 className="card-title flex-grow-1 mb-0">Student Name</h5>
+                  <div className="flex-shrink-0">
+                    {/* <Link
+                      to="/apps-invoices-details"
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <i className="ri-download-2-fill align-middle me-1"></i>{" "}
+                      Invoice
+                    </Link> */}
+                  </div>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <div className="table-responsive table-card">
+                  <table className="table table-nowrap align-middle table-borderless mb-0">
+                    <thead className="table-light text-muted">
+                      <tr>
+                        <th scope="col">Product Details</th>
+                        <th scope="col">Item Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col" className="text-end">
+                          Total Amount
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* {productDetails.map((product, key) => (
+                        <EcommerceOrderProduct product={product} key={key} />
+                      ))} */}
+                      <tr className="border-top border-top-dashed">
+                        <td colSpan="3"></td>
+                        <td colSpan="2" className="fw-medium p-0">
+                          <table className="table table-borderless mb-0">
+                            <tbody>
+                              <tr>
+                                <td>Sub Total :</td>
+                                <td className="text-end">$359.96</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Discount{" "}
+                                  <span className="text-muted">(VELZON15)</span>{" "}
+                                  : :
+                                </td>
+                                <td className="text-end">-$53.99</td>
+                              </tr>
+                              <tr>
+                                <td>Shipping Charge :</td>
+                                <td className="text-end">$65.00</td>
+                              </tr>
+                              <tr>
+                                <td>Estimated Tax :</td>
+                                <td className="text-end">$44.99</td>
+                              </tr>
+                              <tr className="border-top border-top-dashed">
+                                <th scope="row">Total (USD) :</th>
+                                <th className="text-end">$415.96</th>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl={3}>
+            <Card>
+              <CardHeader>
+                <div className="d-flex">
+                  <h5 className="card-title flex-grow-1 mb-0">
+                    <i className="mdi mdi-truck-fast-outline align-middle me-1 text-muted"></i>{" "}
+                    Personal Details
+                  </h5>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <div className="text-center">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/uetqnvvg.json"
+                    trigger="loop"
+                    colors="primary:#405189,secondary:#0ab39c"
+                    style={{ width: "80px", height: "80px" }}
+                  ></lord-icon>
+                  <h5 className="fs-17 mt-2">Student Full Name</h5>
+                  <p className="text-muted mb-0">ID: 1000121</p>
+                  <p className="text-muted mb-0">Grade and Secion</p>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

@@ -8,6 +8,7 @@ import Roles from "../pages/Roles";
 import SchoolDashboard from "../pages/SchoolDashboard";
 import StudentsBoard from "../pages/Students";
 import StudentsList from "../pages/Students/StudentsList";
+import StudentDetails from "../pages/Students/StudentDetails";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <DashboardEcommerce /> },
@@ -15,6 +16,7 @@ const authProtectedRoutes = [
   { path: "/school", component: <SchoolDashboard /> },
   { path: "/students", component: <StudentsBoard /> },
   { path: "/student-list/:id", component: <StudentsList /> },
+  { path: "/student-detail", component: <StudentDetails /> },
 ];
 
 const publicRoutes = [

@@ -536,96 +536,14 @@ const index = () => {
         toggle={toggle}
         modalClassName="zoomIn"
         centered
-        tabIndex="-1"
+        // tabIndex="-1"
+        style={{ width: "1000px" }}
       >
         <ModalHeader toggle={toggle} className="p-3 bg-success-subtle">
-          {" "}
-          {!!isEdit ? "Student Detail" : "Create Role"}{" "}
+          Student Detail
         </ModalHeader>
         <ModalBody>
-          <StudentDetails />
-        </ModalBody>
-      </Modal>
-
-      {/* Projects */}
-      <Modal
-        id="createProjectModal"
-        isOpen={modalProject}
-        toggle={() => setModalProject(!modalProject)}
-        modalClassName="zoomIn"
-        tabIndex="-1"
-        centered
-      >
-        <ModalHeader
-          toggle={() => setModalProject(!modalProject)}
-          className="p-3 bg-success-subtle"
-          id="createProjectModalLabel"
-        >
-          Create Role
-        </ModalHeader>
-        <ModalBody>
-          <form
-            className="needs-validation createProject-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              projectValidation.handleSubmit();
-              setModalProject(false);
-              return false;
-            }}
-          >
-            <div className="mb-4">
-              <label htmlFor="projectname-input" className="form-label">
-                Role Name
-              </label>
-              <Input
-                type="text"
-                className="form-control"
-                id="projectname-input"
-                name="title"
-                validate={{
-                  required: { value: true },
-                }}
-                onChange={projectValidation.handleChange}
-                onBlur={projectValidation.handleBlur}
-                value={projectValidation.values.title || ""}
-                placeholder="Enter Role name"
-                invalid={
-                  projectValidation.touched.title &&
-                  projectValidation.errors.title
-                    ? true
-                    : false
-                }
-              />
-              {projectValidation.touched.title &&
-              projectValidation.errors.title ? (
-                <FormFeedback type="invalid">
-                  {projectValidation.errors.title}
-                </FormFeedback>
-              ) : null}
-              <input
-                type="hidden"
-                className="form-control"
-                id="projectid-input"
-                value=""
-              />
-            </div>
-            <div className="hstack gap-2 justify-content-end">
-              <button
-                type="button"
-                className="btn btn-ghost-success"
-                onClick={() => setModalProject(false)}
-              >
-                <i className="ri-close-line align-bottom"></i> Close
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                id="addNewProject"
-              >
-                Add Role
-              </button>
-            </div>
-          </form>
+          <StudentDetails student={selectedStudent} />
         </ModalBody>
       </Modal>
     </React.Fragment>
