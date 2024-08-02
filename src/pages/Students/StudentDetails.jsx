@@ -10,15 +10,6 @@ const StudentDetails = () => {
       {console.log("the file is here: ", currentStudent)}
       <Container fluid>
         <BreadCrumb title="Student Details" />
-        <Link to="/students">
-          {/* <button
-            className="btn btn-warning createTask"
-            type="button"
-            onClick={() => handleTodoClicks()}
-          >
-            <i className="ri-add-fill align-bottom" /> Back
-          </button> */}
-        </Link>
         <Row>
           <Col xl={3}>
             <Card>
@@ -55,26 +46,76 @@ const StudentDetails = () => {
           <Col xl={9}>
             <Card>
               <CardHeader>
-                  <h5 className="card-title flex-grow-1 mb-0">
-                    Payment Details
-                  </h5>
+                <h5 className="card-title flex-grow-1 mb-0">Payment Details</h5>
                 <div className="d-flex align-items-center">
                   <div className="flex-shrink-0">
-                    {currentStudent?.paymentsForStudent?.map(
-                      (eachItem, key) => {
-                        return eachItem?.typeAndAmount.map(
-                          (eachTypeandAmount, key) => {
-                            return (
-                              <div>
-                                <h5>{eachTypeandAmount.paymentType}</h5>
-                                <h5>{eachTypeandAmount.amount}</h5>
-                                <h5>{eachTypeandAmount.status}</h5>
-                              </div>
-                            );
-                          }
-                        );
-                      }
-                    )}
+                    <div className="todo-task" id="todo-task">
+                      <div className="table-responsive">
+                        <table
+                          className="table align-middle position-relative table-nowrap"
+                          style={{ width: "800px" }}
+                        >
+                          <thead className="table-active">
+                            <tr>
+                              <th scope="col">Payment Type</th>
+                              <th scope="col">Amount</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody id="task-list">
+                            {currentStudent?.paymentsForStudent?.map(
+                              (eachItem, key) => {
+                                return eachItem?.typeAndAmount.map(
+                                  (eachTypeandAmount, key) => {
+                                    return (
+                                      <tr key={key}>
+                                        <td>
+                                          <div className="d-flex align-items-start">
+                                            <div className="flex-grow-1">
+                                              <div className="form-check">
+                                                {eachTypeandAmount.paymentType}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div className="d-flex align-items-start">
+                                            <div className="flex-grow-1">
+                                              <div className="form-check">
+                                                {eachTypeandAmount.amount}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div className="d-flex align-items-start">
+                                            <div className="flex-grow-1">
+                                              <div
+                                                className="form-check"
+                                                style={{
+                                                  color: `${
+                                                    eachTypeandAmount.status ==
+                                                    "Not Paid"
+                                                      ? "red"
+                                                      : "green"
+                                                  }`,
+                                                }}
+                                              >
+                                                {eachTypeandAmount.status}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    );
+                                  }
+                                );
+                              }
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardHeader>
