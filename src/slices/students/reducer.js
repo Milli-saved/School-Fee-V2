@@ -5,6 +5,7 @@ import {
   getSchools,
   getAllStudentsInGrade,
   getAllSchools,
+  setCurrentStudent,
 } from "./thunk";
 
 export const initialState = {
@@ -22,7 +23,6 @@ const StudentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAllGrades.fulfilled, (state, action) => {
-      state.grades = action.payload;
     });
     builder.addCase(getAllGrades.rejected, (state, action) => {
       state.error = action.payload;
@@ -36,6 +36,9 @@ const StudentsSlice = createSlice({
     });
     builder.addCase(getAllSchools.fulfilled, (state, action) => {
       state.allschools = action.payload;
+    });
+    builder.addCase(setCurrentStudent.fulfilled, (state, action) => {
+      state.currentStudent = action.payload;
     });
   },
 });

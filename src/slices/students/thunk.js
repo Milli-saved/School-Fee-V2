@@ -64,3 +64,14 @@ export const getAllSchools = createAsyncThunk(
     }
   }
 );
+
+export const setCurrentStudent = createAsyncThunk(
+  "students/setCurrentStudent",
+  async (data) => {
+    try {
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+);

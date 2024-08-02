@@ -39,6 +39,7 @@ import {
   RegisterUsers,
   getAllUsers as GetAllUsers,
   getAllStudentsInGrade,
+  setCurrentStudent,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
 import StudentDetails from "./StudentDetails";
@@ -164,6 +165,7 @@ const index = () => {
   const handleTodoClick = useCallback(
     (arg) => {
       const todo = arg;
+      dispatch(setCurrentStudent(arg));
 
       setSelectedStudent(arg);
 
@@ -330,29 +332,6 @@ const index = () => {
       console.log("the values: ", values);
     },
   });
-
-  const allRoles = [
-    { id: 1, value: "Super Admin", code: "0000" },
-    { id: 2, value: "CBE Branch", code: "2001" },
-    { id: 3, value: "School Admin", code: "2002" },
-  ];
-
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState(null);
-
-  const RegisterAccount = () => {
-    let userData = {
-      name: fullName,
-      email,
-      roles: Number(role),
-      password: "Welcome@2CBE",
-      secretKey: "yitopretrtyio0594-yopiyr0954",
-    };
-    dispatch(RegisterUsers(userData));
-    setModalTodo(!modalTodo);
-    console.log("this is the data: ", userData);
-  };
 
   return (
     <React.Fragment>
@@ -537,7 +516,7 @@ const index = () => {
         modalClassName="zoomIn"
         centered
         // tabIndex="-1"
-        style={{ width: "1000px" }}
+        style={{ maxWidth: "1600px", width: "100%" }}
       >
         <ModalHeader toggle={toggle} className="p-3 bg-success-subtle">
           Student Detail
