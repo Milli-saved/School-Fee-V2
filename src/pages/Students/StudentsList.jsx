@@ -516,7 +516,7 @@ const index = () => {
         modalClassName="zoomIn"
         centered
         // tabIndex="-1"
-        style={{ maxWidth: "1600px", width: "100%" }}
+        style={{ maxWidth: "1600px", width: "90%" }}
       >
         <ModalHeader toggle={toggle} className="p-3 bg-success-subtle">
           Student Detail
