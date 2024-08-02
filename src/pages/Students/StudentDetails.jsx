@@ -46,7 +46,7 @@ const StudentDetails = () => {
           <Col xl={9}>
             <Card>
               <CardHeader>
-                <h5 className="card-title flex-grow-1 mb-0">Payment Details</h5>
+                <h5 className="card-title flex-grow-1 mb-3">Payment Details</h5>
                 <div className="d-flex align-items-center">
                   <div className="flex-shrink-0">
                     <div className="todo-task" id="todo-task">

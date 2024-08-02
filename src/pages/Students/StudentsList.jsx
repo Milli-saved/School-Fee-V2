@@ -522,7 +522,7 @@ const index = () => {
           Student Detail
         </ModalHeader>
         <ModalBody>
-          <StudentDetails student={selectedStudent} />
+          <StudentDetails/>
         </ModalBody>
       </Modal>
     </React.Fragment>
