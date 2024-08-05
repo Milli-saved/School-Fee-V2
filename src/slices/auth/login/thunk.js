@@ -54,11 +54,16 @@ export const loginUser = (user, history) => async (dispatch) => {
       sessionStorage.setItem("authUser", JSON.stringify(data));
       dispatch(loginSuccess(data));
       console.log("the data: ", data);
-      if (data.roles == 0) {
-        history("/dashboard");
+      if (data.passwordUpdate) {
+        if (data.roles == 0) {
+          history("/dashboard");
+        }
+        if (data.roles == 2002) {
+          history("/school");
+        }
       }
-      if (data.roles == 2002) {
-        history("/school");
+      else {
+        history("/update-password");
       }
     }
   } catch (error) {
