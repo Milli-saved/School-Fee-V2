@@ -2,8 +2,22 @@ import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useProfile } from "../../Components/Hooks/UserHooks";
+import { logoutUser } from "../../slices/thunks";
+import { useEffect } from "react";
 
 const StudentDetails = () => {
+  const { userProfile } = useProfile();
+  useEffect(() => {
+    if (userProfile.roles !== 0) {
+      dispatch(logoutUser());
+    }
+    if (!userProfile && loading && !token) {
+      return (
+        <Navigate to={{ pathname: "/", state: { from: props.location } }} />
+      );
+    }
+  }, []);
   const { currentStudent } = useSelector((state) => state.Students);
   return (
     <div className="page-content">

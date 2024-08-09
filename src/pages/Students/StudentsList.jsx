@@ -40,9 +40,11 @@ import {
   getAllUsers as GetAllUsers,
   getAllStudentsInGrade,
   setCurrentStudent,
+  logoutUser,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
 import StudentDetails from "./StudentDetails";
+import { useProfile } from "../../Components/Hooks/UserHooks";
 
 const Status = ({ status }) => {
   switch (status) {
@@ -96,6 +98,18 @@ const index = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { user } = useSelector((state) => state.Login);
+
+  const { userProfile } = useProfile();
+  useEffect(() => {
+    if (userProfile.roles !== 0) {
+      dispatch(logoutUser());
+    }
+    if (!userProfile && loading && !token) {
+      return (
+        <Navigate to={{ pathname: "/", state: { from: props.location } }} />
+      );
+    }
+  }, []);
 
   const [schoolId, setSchoolId] = useState("");
   useEffect(() => {
@@ -522,7 +536,7 @@ const index = () => {
           Student Detail
         </ModalHeader>
         <ModalBody>
-          <StudentDetails/>
+          <StudentDetails />
         </ModalBody>
       </Modal>
     </React.Fragment>

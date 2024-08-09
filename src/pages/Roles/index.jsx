@@ -39,8 +39,10 @@ import {
   RegisterUsers,
   getAllUsers as GetAllUsers,
   getAllSchools,
+  logoutUser,
 } from "../../slices/thunks";
 import { createSelector } from "reselect";
+import { useProfile } from "../../Components/Hooks/UserHooks";
 
 const Status = ({ status }) => {
   switch (status) {
@@ -92,7 +94,19 @@ const ToDoList = () => {
   document.title = "Roles";
 
   const dispatch = useDispatch();
+  const { userProfile } = useProfile();
+  useEffect(() => {
+    if (userProfile.roles !== 0) {
+      dispatch(logoutUser());
+    }
+    if (!userProfile && loading && !token) {
+      return (
+        <Navigate to={{ pathname: "/", state: { from: props.location } }} />
+      );
+    }
+  }, []);
 
+  
   const selectLayoutState = (state) => state.Todos;
   const selectState = (state) => state;
   const selectLayoutProperties = createSelector(selectLayoutState, (state) => ({

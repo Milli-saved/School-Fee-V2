@@ -138,6 +138,7 @@ const Navdata = () => {
     isMaps,
     isMultiLevel,
   ]);
+  console.log("user: ", userProfile);
 
   const menuItems =
     userProfile.roles === 0

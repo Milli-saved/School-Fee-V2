@@ -35,10 +35,24 @@ import profileBg from "../../assets/images/profile-bg.jpg";
 import { getSchools } from "../../slices/students/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
+import { useProfile } from "../../Components/Hooks/UserHooks";
+import { logoutUser } from "../../slices/thunks";
 
 const index = () => {
   const dispatch = useDispatch();
   document.title = "School";
+
+  const { userProfile } = useProfile();
+  useEffect(() => {
+    if (userProfile.roles !== 2002) {
+      dispatch(logoutUser());
+    }
+    if (!userProfile && loading && !token) {
+      return (
+        <Navigate to={{ pathname: "/", state: { from: props.location } }} />
+      );
+    }
+  }, []);
 
   const { user } = useSelector((state) => state.Login);
 
