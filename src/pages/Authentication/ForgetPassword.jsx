@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -13,6 +13,7 @@ import {
   Form,
 } from "reactstrap";
 
+import CbeLogo from "../../assets/images/cbe-logo.png";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
@@ -43,9 +44,20 @@ const ForgetPasswordPage = (props) => {
 
     initialValues: {
       email: "",
+      password: "",
+      confirmPassword: "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
+      password: Yup.string()
+        .required("Please Enter Your Password")
+        .min(8, "Password must be at least 8 characters long")
+        .matches(/[a-zA-Z]/, "Password must contain both letters")
+        .matches(/[0-9]/, "Password must contain numbers")
+        .matches(/[@$!%*?&#]/, "Password must contain a special character"),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Please Confirm Your Password"),
     }),
     onSubmit: (values) => {
       dispatch(userForgetPassword(values, props.history));
@@ -59,6 +71,8 @@ const ForgetPasswordPage = (props) => {
   }));
   // Inside your component
   const { forgetError, forgetSuccessMsg } = useSelector(selectLayoutProperties);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <ParticlesAuth>
@@ -69,11 +83,11 @@ const ForgetPasswordPage = (props) => {
               <div className="text-center mt-sm-5 mb-4 text-white-50">
                 <div>
                   <Link to="/" className="d-inline-block auth-logo">
-                    <img src={logoLight} alt="" height="20" />
+                    <img src={CbeLogo} alt="" height="150" />
                   </Link>
                 </div>
                 <p className="mt-3 fs-15 fw-medium">
-                  Premium Admin & Dashboard Template
+                  Change Your Password Here.
                 </p>
               </div>
             </Col>
@@ -84,9 +98,7 @@ const ForgetPasswordPage = (props) => {
               <Card className="mt-4">
                 <CardBody className="p-4">
                   <div className="text-center mt-2">
-                    <h5 className="text-primary">Forgot Password?</h5>
-                    <p className="text-muted">Reset password with velzon</p>
-
+                    <h5 className="text-primary">Update Password</h5>
                     <lord-icon
                       src="https://cdn.lordicon.com/rhvddzym.json"
                       trigger="loop"
@@ -100,7 +112,8 @@ const ForgetPasswordPage = (props) => {
                     className="border-0 alert-warning text-center mb-2 mx-2"
                     role="alert"
                   >
-                    Enter your email and instructions will be sent to you!
+                    You'r password should contain Alphabet, Numbers, special
+                    characters and must be longer than 8 words.
                   </Alert>
                   <div className="p-2">
                     {forgetError && forgetError ? (
@@ -121,31 +134,45 @@ const ForgetPasswordPage = (props) => {
                       }}
                     >
                       <div className="mb-4">
-                        <Label className="form-label">Email</Label>
+                        <Label className="form-label">New Password</Label>
                         <Input
-                          name="email"
+                          name="password"
                           className="form-control"
-                          placeholder="Enter email"
-                          type="email"
+                          placeholder="Enter Password"
+                          type="password"
                           onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          value={validation.values.email || ""}
+                          invalid={validation.errors.password ? true : false}
+                        />
+
+                        {validation.errors.password ? (
+                          <FormFeedback type="invalid">
+                            <div>{validation.errors.password}</div>
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                      <div className="mb-4">
+                        <Label className="form-label">Confirm Password</Label>
+                        <Input
+                          name="confirmPassword"
+                          className="form-control"
+                          placeholder="Confirm password"
+                          type="password"
+                          onChange={validation.handleChange}
                           invalid={
-                            validation.touched.email && validation.errors.email
-                              ? true
-                              : false
+                            validation.errors.confirmPassword ? true : false
                           }
                         />
-                        {validation.touched.email && validation.errors.email ? (
+
+                        {validation.errors.confirmPassword ? (
                           <FormFeedback type="invalid">
-                            <div>{validation.errors.email}</div>
+                            <div>{validation.errors.confirmPassword}</div>
                           </FormFeedback>
                         ) : null}
                       </div>
 
                       <div className="text-center mt-4">
                         <button className="btn btn-success w-100" type="submit">
-                          Send Reset Link
+                          Update Password
                         </button>
                       </div>
                     </Form>
@@ -153,7 +180,7 @@ const ForgetPasswordPage = (props) => {
                 </CardBody>
               </Card>
 
-              <div className="mt-4 text-center">
+              {/* <div className="mt-4 text-center">
                 <p className="mb-0">
                   Wait, I remember my password...{" "}
                   <Link
@@ -164,7 +191,7 @@ const ForgetPasswordPage = (props) => {
                     Click here{" "}
                   </Link>{" "}
                 </p>
-              </div>
+              </div> */}
             </Col>
           </Row>
         </Container>

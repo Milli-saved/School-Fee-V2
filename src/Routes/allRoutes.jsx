@@ -23,7 +23,7 @@ const authProtectedRoutes = [
 
 const publicRoutes = [
   { path: "/", Component: <Login /> },
-  { path: "/forgot-password", Component: <ForgetPassword /> },
+  { path: "/change-password", Component: <ForgetPassword /> },
 ];
 
 export { publicRoutes, authProtectedRoutes };

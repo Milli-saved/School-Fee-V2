@@ -23,6 +23,8 @@ const ProfileDropdown = () => {
   // Inside your component
   const user = useSelector(profiledropdownData);
 
+  // const {user} = useSelector((state)=> state.Login)
+
   const [userName, setUserName] = useState("Admin");
   const [role, setRole] = useState("");
   useEffect(() => {

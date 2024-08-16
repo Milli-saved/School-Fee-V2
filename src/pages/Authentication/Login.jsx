@@ -108,7 +108,7 @@ const Login = (props) => {
     dispatch(loginUser(userData, props.router.navigate));
   };
 
-  document.title = "Basic SignIn | Velzon - React Admin & Dashboard Template";
+  document.title = "Login";
   return (
     <React.Fragment>
       <ParticlesAuth>
@@ -177,11 +177,11 @@ const Login = (props) => {
                         </div>
 
                         <div className="mb-3">
-                          <div className="float-end">
+                          {/* <div className="float-end">
                             <Link to="/forgot-password" className="text-muted">
                               Forgot password?
                             </Link>
-                          </div>
+                          </div> */}
                           <Label
                             className="form-label"
                             htmlFor="password-input"
