@@ -69,3 +69,18 @@ export const loginUser = (user, history) => async (dispatch) => {
     dispatch(apiError(error));
   }
 };
+
+export const changePassword = (password, history) => async (dispatch) => {
+  try {
+    console.log("I got the password and token, ", password);
+    let response = await axios.post(
+      "http://localhost:5000/api/users/adminlogin",
+      password
+    );
+    if (response) {
+      console.log("response: ", response);
+    }
+  } catch (error) {
+    dispatch(apiError(error));
+  }
+};

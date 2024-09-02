@@ -17,7 +17,7 @@ import CbeLogo from "../../assets/images/cbe-logo.png";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import withRouter from "../../Components/Common/withRouter";
 
 // Formik Validation
@@ -25,7 +25,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // action
-import { userForgetPassword } from "../../slices/thunks";
+import { changePassword, userForgetPassword } from "../../slices/thunks";
 
 // import images
 // import profile from "../../assets/images/bg.png";
@@ -34,9 +34,10 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 import { createSelector } from "reselect";
 
 const ForgetPasswordPage = (props) => {
-  document.title = "Reset Password | Velzon - React Admin & Dashboard Template";
+  document.title = "Reset Password";
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
@@ -60,9 +61,22 @@ const ForgetPasswordPage = (props) => {
         .required("Please Confirm Your Password"),
     }),
     onSubmit: (values) => {
-      dispatch(userForgetPassword(values, props.history));
+      console.log(" the values are: ", values);
+      // dispatch(userForgetPassword(values, props.history));
     },
   });
+
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get("token");
+
+  const submitHandler = (e) => {
+    let password = {
+      password: e.target[0].value,
+      token,
+    };
+    console.log("the password: ", password);
+    dispatch(changePassword(password, props.router.navigate));
+  };
 
   const selectLayoutState = (state) => state.ForgetPassword;
   const selectLayoutProperties = createSelector(selectLayoutState, (state) => ({
@@ -129,8 +143,9 @@ const ForgetPasswordPage = (props) => {
                     <Form
                       onSubmit={(e) => {
                         e.preventDefault();
-                        validation.handleSubmit();
-                        return false;
+                        // validation.handleSubmit();
+                        // return false;
+                        submitHandler(e);
                       }}
                     >
                       <div className="mb-4">
